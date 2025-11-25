@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +13,45 @@ body {
   color: #1a1a1a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide native cursor globally on desktop */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
+/* ================================
+   GRAIN TEXTURE OVERLAY
+   Efecto papel envejecido vintage
+   ================================ */
+.grain-overlay {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  animation: grain 6s steps(8) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(-5%, 25%); }
+  50% { transform: translate(-15%, 10%); }
+  60% { transform: translate(15%, 0%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(3%, 20%); }
+  90% { transform: translate(-10%, 10%); }
 }
 
 /* ================================
@@ -44,26 +85,51 @@ body {
 /* ================================
    TYPOGRAPHY
    ================================ */
+/* Drop cap utility - consistent across all articles */
 .drop-cap::first-letter {
   float: left;
   font-size: 3.5rem;
-  line-height: 0.8;
+  line-height: 1;
   font-weight: bold;
   margin-right: 0.5rem;
-  margin-top: 0.25rem;
+  margin-top: 0.1rem;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+@media (min-width: 640px) {
+  .drop-cap::first-letter {
+    font-size: 4rem;
+  }
 }
 
 /* ================================
    ANIMATIONS
    ================================ */
+/* Ink ripple effect - newspaper ink splash */
+@keyframes ink-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-ink-ripple {
+  animation: ink-ripple 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -99,7 +165,7 @@ body {
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
+  animation: fadeIn 0.2s ease-out forwards;
 }
 
 .animate-fadeInUp {
@@ -127,31 +193,32 @@ body {
    TRANSITIONS
    ================================ */
 a, button {
-  transition: color 0.2s ease, 
-              background-color 0.2s ease, 
-              border-color 0.2s ease,
-              transform 0.2s ease,
-              box-shadow 0.2s ease;
+  transition: color 0.25s ease-out, 
+              background-color 0.3s ease-out, 
+              border-color 0.25s ease-out,
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ================================
    HOVER EFFECTS
    ================================ */
 .hover-lift {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 .hover-scale {
-  transition: transform 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-scale:hover {
-  transform: scale(1.02);
+  transform: scale(1.015);
 }
 
 /* ================================
@@ -196,6 +263,22 @@ button:focus-visible {
   nav, footer, button {
     display: none !important;
   }
+}
+
+/* ================================
+   LAZY LOADING SHIMMER
+   ================================ */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
 }
 
 /* ================================

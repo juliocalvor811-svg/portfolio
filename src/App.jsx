@@ -1,13 +1,54 @@
-import { useState } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import Masthead from './components/Masthead'
-import FrontPage from './components/FrontPage'
-import SelectedWorks from './components/SelectedWorks'
-import About from './components/About'
-import Classifieds from './components/Classifieds'
+import { TopBanner } from './components/ui/AdBanner'
+import CustomCursor from './components/ui/CustomCursor'
+import LoadingScreen from './components/ui/LoadingScreen'
+import PageTransition from './components/ui/PageTransition'
+import { SoundProvider, SoundToggle } from './components/ui/SoundManager'
+
+// Lazy load sections for better initial load performance
+const FrontPage = lazy(() => import('./components/FrontPage'))
+const SelectedWorks = lazy(() => import('./components/SelectedWorks'))
+const About = lazy(() => import('./components/About'))
+const Classifieds = lazy(() => import('./components/Classifieds'))
+
+// Simple loading fallback for lazy sections
+function SectionLoader() {
+  return (
+    <div className="flex items-center justify-center py-20">
+      <div className="text-center">
+        <div className="inline-block w-6 h-6 border-2 border-neutral-300 border-t-neutral-800 rounded-full animate-spin" />
+        <p className="mt-3 text-xs tracking-widest text-neutral-500">LOADING...</p>
+      </div>
+    </div>
+  )
+}
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
   const [activeSection, setActiveSection] = useState('front')
   const [selectedProject, setSelectedProject] = useState(null)
+
+  // Subtle parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY
+      const parallaxElements = document.querySelectorAll('.parallax-element')
+
+      parallaxElements.forEach((el) => {
+        const speed = parseFloat(el.dataset.speed) || 0.1
+        const yPos = -(scrolled * speed)
+        el.style.transform = `translateY(${yPos}px)`
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false)
+  }
 
   const handleProjectClick = (project) => {
     setSelectedProject(project)
@@ -36,19 +77,42 @@ function App() {
     }
   }
 
+  // Show loading screen on initial load
+  if (isLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />
+  }
+
   return (
-    <div className="min-h-screen bg-paper flex flex-col">
-      <Masthead 
-        activeSection={activeSection} 
-        onSectionChange={handleSectionChange} 
-      />
-      
-      <main className="flex-1 px-4 sm:px-6 md:px-8 py-6 sm:py-8 max-w-7xl mx-auto w-full">
-        {renderSection()}
-      </main>
-      
-      <Footer onSectionChange={handleSectionChange} />
-    </div>
+    <SoundProvider>
+      <div className="min-h-screen bg-paper flex flex-col cursor-none animate-fadeIn">
+        {/* Custom cursor */}
+        <CustomCursor />
+
+        {/* Grain texture overlay - vintage paper effect */}
+        <div className="grain-overlay" aria-hidden="true" />
+
+        {/* Top Advertisement Banner - Only on The Developer section */}
+        {activeSection === 'about' && <TopBanner />}
+
+        <Masthead
+          activeSection={activeSection}
+          onSectionChange={handleSectionChange}
+        />
+
+        <main className="flex-1 px-4 sm:px-6 md:px-8 py-6 sm:py-8 max-w-7xl mx-auto w-full">
+          <PageTransition sectionKey={activeSection}>
+            <Suspense fallback={<SectionLoader />}>
+              {renderSection()}
+            </Suspense>
+          </PageTransition>
+        </main>
+
+        <Footer onSectionChange={handleSectionChange} />
+
+        {/* Sound toggle button */}
+        <SoundToggle />
+      </div>
+    </SoundProvider>
   )
 }
 
@@ -64,28 +128,28 @@ function Footer({ onSectionChange }) {
               Frontend Developer Portfolio
             </p>
           </div>
-          
+
           {/* Quick links */}
           <div className="flex gap-4 sm:gap-6 text-xs sm:text-sm">
-            <button 
+            <button
               onClick={() => onSectionChange('front')}
               className="text-neutral-500 hover:text-neutral-900 transition-colors"
             >
               Home
             </button>
-            <button 
+            <button
               onClick={() => onSectionChange('works')}
               className="text-neutral-500 hover:text-neutral-900 transition-colors"
             >
               Works
             </button>
-            <button 
+            <button
               onClick={() => onSectionChange('about')}
               className="text-neutral-500 hover:text-neutral-900 transition-colors"
             >
               About
             </button>
-            <button 
+            <button
               onClick={() => onSectionChange('contact')}
               className="text-neutral-500 hover:text-neutral-900 transition-colors"
             >
@@ -93,7 +157,7 @@ function Footer({ onSectionChange }) {
             </button>
           </div>
         </div>
-        
+
         {/* Bottom line */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-2 pt-4 border-t border-neutral-200 text-[9px] sm:text-[10px] tracking-widest text-neutral-500">
           <span>© 2025 JULIO CALVO</span>

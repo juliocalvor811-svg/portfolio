@@ -2,6 +2,9 @@ import { useState } from 'react'
 import projects from '../data/projects'
 import Ornament from './ui/Ornament'
 import SectionRule from './ui/SectionRule'
+import TiltCard from './ui/TiltCard'
+import InkRipple from './ui/InkRipple'
+import ScrollReveal from './ui/ScrollReveal'
 
 function FrontPage({ onProjectClick }) {
   const [hoveredArticle, setHoveredArticle] = useState(null)
@@ -12,7 +15,8 @@ function FrontPage({ onProjectClick }) {
   return (
     <div className="animate-fadeIn">
       {/* Lead Story */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-8">
+      <ScrollReveal>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mb-8">
         
         {/* Main Article */}
         <article className="lg:col-span-8">
@@ -20,12 +24,14 @@ function FrontPage({ onProjectClick }) {
             <p className="text-[10px] sm:text-xs tracking-widest text-neutral-500 mb-2">
               {leadStory.category}
             </p>
-            <h2 
-              className="text-2xl sm:text-3xl md:text-4xl leading-tight font-bold font-serif cursor-pointer hover:text-neutral-600 transition-colors text-balance"
-              onClick={() => onProjectClick && onProjectClick(leadStory)}
-            >
-              {leadStory.title}
-            </h2>
+            <InkRipple>
+              <h2
+                className="text-2xl sm:text-3xl md:text-4xl leading-tight font-bold font-serif cursor-pointer hover:text-neutral-600 transition-colors text-balance"
+                onClick={() => onProjectClick && onProjectClick(leadStory)}
+              >
+                {leadStory.title}
+              </h2>
+            </InkRipple>
             <p className="text-base sm:text-lg text-neutral-600 mt-2 italic font-serif">
               {leadStory.subtitle}
             </p>
@@ -103,7 +109,7 @@ function FrontPage({ onProjectClick }) {
           </div>
           
           <Ornament className="my-6 hidden lg:flex" />
-          
+
           {/* Article Index - Hidden on mobile */}
           <div className="hidden lg:block">
             <h3 className="text-xs tracking-widest font-bold mb-3">
@@ -131,22 +137,24 @@ function FrontPage({ onProjectClick }) {
             </nav>
           </div>
         </aside>
-      </div>
-      
+        </div>
+      </ScrollReveal>
+
       <SectionRule title="More Stories" />
-      
+
       {/* Secondary Stories Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {secondaryStories.map((project, i) => (
-          <ArticleCard
-            key={project.id}
-            project={project}
-            index={i + 2}
-            isHovered={hoveredArticle === project.id}
-            onMouseEnter={() => setHoveredArticle(project.id)}
-            onMouseLeave={() => setHoveredArticle(null)}
-            onClick={() => onProjectClick && onProjectClick(project)}
-          />
+          <ScrollReveal key={project.id} delay={i * 0.1} direction="up">
+            <ArticleCard
+              project={project}
+              index={i + 2}
+              isHovered={hoveredArticle === project.id}
+              onMouseEnter={() => setHoveredArticle(project.id)}
+              onMouseLeave={() => setHoveredArticle(null)}
+              onClick={() => onProjectClick && onProjectClick(project)}
+            />
+          </ScrollReveal>
         ))}
       </div>
     </div>
@@ -164,34 +172,38 @@ function Stat({ number, label }) {
 
 function ArticleCard({ project, index, isHovered, onMouseEnter, onMouseLeave, onClick }) {
   return (
-    <article 
-      className="cursor-pointer group hover-lift"
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
-    >
-      {/* Thumbnail */}
-      <div className="bg-neutral-100 border border-neutral-200 aspect-[4/3] flex items-center justify-center mb-3 overflow-hidden">
-        <span className="text-4xl sm:text-5xl text-neutral-300 font-serif group-hover:scale-110 transition-transform duration-300">
-          {project.name[0]}
-        </span>
-      </div>
-      
-      {/* Meta */}
-      <p className="text-[10px] tracking-widest text-neutral-500 mb-1">
-        {project.category}
-      </p>
-      
-      {/* Title */}
-      <h3 className="text-base sm:text-lg font-bold leading-tight font-serif group-hover:text-neutral-600 transition-colors">
-        {truncateTitle(project.title, 8)}
-      </h3>
-      
-      {/* Excerpt */}
-      <p className="text-sm text-neutral-500 mt-2 font-serif line-clamp-2 sm:line-clamp-3">
-        {project.content.slice(0, 100).trim()}...
-      </p>
-    </article>
+    <TiltCard intensity={6}>
+      <InkRipple>
+        <article
+          className="cursor-pointer group"
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          onClick={onClick}
+        >
+          {/* Thumbnail */}
+          <div className="bg-neutral-100 border border-neutral-200 aspect-[4/3] flex items-center justify-center mb-3 overflow-hidden">
+            <span className="text-4xl sm:text-5xl text-neutral-300 font-serif group-hover:scale-110 transition-transform duration-300">
+              {project.name[0]}
+            </span>
+          </div>
+
+          {/* Meta */}
+          <p className="text-[10px] tracking-widest text-neutral-500 mb-1">
+            {project.category}
+          </p>
+
+          {/* Title */}
+          <h3 className="text-base sm:text-lg font-bold leading-tight font-serif group-hover:text-neutral-600 transition-colors">
+            {truncateTitle(project.title, 8)}
+          </h3>
+
+          {/* Excerpt */}
+          <p className="text-sm text-neutral-500 mt-2 font-serif line-clamp-2 sm:line-clamp-3">
+            {project.content.slice(0, 100).trim()}...
+          </p>
+        </article>
+      </InkRipple>
+    </TiltCard>
   )
 }
 

@@ -1,15 +1,18 @@
 import Ornament from './ui/Ornament'
+import ScrollReveal from './ui/ScrollReveal'
 
 function About() {
   return (
     <div className="animate-fadeIn">
       {/* Header */}
-      <div className="text-center mb-6 sm:mb-8">
-        <h2 className="text-2xl sm:text-3xl font-bold font-serif">The Developer</h2>
-        <p className="text-neutral-500 italic font-serif mt-1 text-sm sm:text-base">
-          A profile in determination and self-directed learning
-        </p>
-      </div>
+      <ScrollReveal>
+        <div className="text-center mb-6 sm:mb-8">
+          <h2 className="text-2xl sm:text-3xl font-bold font-serif">The Developer</h2>
+          <p className="text-neutral-500 italic font-serif mt-1 text-sm sm:text-base">
+            A profile in determination and self-directed learning
+          </p>
+        </div>
+      </ScrollReveal>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         {/* Portrait Column */}
@@ -98,87 +101,93 @@ function About() {
           </div>
 
           {/* Skills Section */}
-          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
-            <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
-              TECHNICAL PROFICIENCY
-            </h4>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <SkillCategory 
-                title="Frontend Development"
-                skills={[
-                  { name: 'React.js', level: 'Advanced' },
-                  { name: 'JavaScript / ES6+', level: 'Advanced' },
-                  { name: 'Tailwind CSS', level: 'Advanced' },
-                  { name: 'HTML5 / CSS3', level: 'Advanced' },
-                ]}
-              />
-              <SkillCategory 
-                title="Tools & Platforms"
-                skills={[
-                  { name: 'Figma', level: 'Proficient' },
-                  { name: 'Git / GitHub', level: 'Proficient' },
-                  { name: 'Supabase', level: 'Proficient' },
-                  { name: 'Vite', level: 'Proficient' },
-                ]}
-              />
+          <ScrollReveal delay={0.1}>
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
+              <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
+                TECHNICAL PROFICIENCY
+              </h4>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <SkillCategory
+                  title="Frontend Development"
+                  skills={[
+                    { name: 'React.js', level: 'Advanced' },
+                    { name: 'JavaScript / ES6+', level: 'Advanced' },
+                    { name: 'Tailwind CSS', level: 'Advanced' },
+                    { name: 'HTML5 / CSS3', level: 'Advanced' },
+                  ]}
+                />
+                <SkillCategory
+                  title="Tools & Platforms"
+                  skills={[
+                    { name: 'Figma', level: 'Proficient' },
+                    { name: 'Git / GitHub', level: 'Proficient' },
+                    { name: 'Supabase', level: 'Proficient' },
+                    { name: 'Vite', level: 'Proficient' },
+                  ]}
+                />
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Education */}
-          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
-            <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
-              EDUCATION & BACKGROUND
-            </h4>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
-                <p className="text-[9px] sm:text-xs tracking-widest text-neutral-500 mb-1 sm:mb-2">
-                  FORMAL EDUCATION
-                </p>
-                <p className="font-bold font-serif text-sm sm:text-base">Humber College</p>
-                <p className="text-xs sm:text-sm text-neutral-600">
-                  Multimedia Design & Development
-                </p>
-                <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                  Toronto, Ontario · 2023-2024
-                </p>
-              </div>
-              
-              <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
-                <p className="text-[9px] sm:text-xs tracking-widest text-neutral-500 mb-1 sm:mb-2">
-                  SELF-DIRECTED LEARNING
-                </p>
-                <p className="font-bold font-serif text-sm sm:text-base">veraOS Project</p>
-                <p className="text-xs sm:text-sm text-neutral-600">
-                  12 months intensive development
-                </p>
-                <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                  137 widgets · React · Full-stack
-                </p>
+          <ScrollReveal delay={0.2}>
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
+              <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
+                EDUCATION & BACKGROUND
+              </h4>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
+                  <p className="text-[9px] sm:text-xs tracking-widest text-neutral-500 mb-1 sm:mb-2">
+                    FORMAL EDUCATION
+                  </p>
+                  <p className="font-bold font-serif text-sm sm:text-base">Humber College</p>
+                  <p className="text-xs sm:text-sm text-neutral-600">
+                    Multimedia Design & Development
+                  </p>
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                    Toronto, Ontario · 2023-2024
+                  </p>
+                </div>
+
+                <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
+                  <p className="text-[9px] sm:text-xs tracking-widest text-neutral-500 mb-1 sm:mb-2">
+                    SELF-DIRECTED LEARNING
+                  </p>
+                  <p className="font-bold font-serif text-sm sm:text-base">veraOS Project</p>
+                  <p className="text-xs sm:text-sm text-neutral-600">
+                    12 months intensive development
+                  </p>
+                  <p className="text-xs sm:text-sm text-neutral-500 mt-1">
+                    137 widgets · React · Full-stack
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* What I'm Looking For */}
-          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
-            <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
-              WHAT I'M LOOKING FOR
-            </h4>
-            
-            <div className="bg-neutral-900 text-white p-4 sm:p-6">
-              <p className="font-serif leading-relaxed text-sm sm:text-base">
-                I'm seeking a <strong>Frontend Developer</strong> or{' '}
-                <strong>UI/UX Designer</strong> role in Toronto where I can 
-                contribute to meaningful products, continue growing as a 
-                developer, and work alongside people who care about craft.
-              </p>
-              <p className="font-serif leading-relaxed mt-3 sm:mt-4 text-neutral-300 text-sm sm:text-base">
-                I thrive in environments that value shipping over perfection, 
-                learning by doing, and building things that actually matter.
-              </p>
+          <ScrollReveal delay={0.3}>
+            <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-neutral-200">
+              <h4 className="text-[10px] sm:text-xs tracking-widest font-bold mb-3 sm:mb-4">
+                WHAT I'M LOOKING FOR
+              </h4>
+
+              <div className="bg-neutral-900 text-white p-4 sm:p-6">
+                <p className="font-serif leading-relaxed text-sm sm:text-base">
+                  I'm seeking a <strong>Frontend Developer</strong> or{' '}
+                  <strong>UI/UX Designer</strong> role in Toronto where I can
+                  contribute to meaningful products, continue growing as a
+                  developer, and work alongside people who care about craft.
+                </p>
+                <p className="font-serif leading-relaxed mt-3 sm:mt-4 text-neutral-300 text-sm sm:text-base">
+                  I thrive in environments that value shipping over perfection,
+                  learning by doing, and building things that actually matter.
+                </p>
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </div>
