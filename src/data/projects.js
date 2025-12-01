@@ -5,7 +5,7 @@ const projects = [
     title: 'veraOS: Building a Full-Stack Productivity Platform from Scratch',
     subtitle: 'Drag-and-drop widgets, interactive highlights, real-time chat, and a library system — all integrated with AI',
     name: 'veraOS',
-    category: 'AI PLATFORM',
+    category: 'FULLSTACK · AI INTEGRATION',
     type: 'Full-Stack Product',
     year: '2025',
     content: `What started as a project to learn how to truly integrate AI into a product 
