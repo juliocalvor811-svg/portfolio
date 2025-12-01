@@ -27,7 +27,7 @@ const projects = [
     ],
     links: {
       live: 'https://veraos.ai',
-      github: 'https://github.com/juliocalvo/veraos',
+      github: 'https://github.com/juliocalvorios/veraos',
       npm: 'https://npmjs.com/package/react-ai-highlight-parser'
     },
 
@@ -279,7 +279,7 @@ const projects = [
     ],
     links: {
       live: 'https://juliocalvo.dev',
-      github: 'https://github.com/juliocalvor811-svg/portfolio'
+      github: 'https://github.com/juliocalvorios/portfolio'
     },
 
     // Full Article Data
@@ -398,7 +398,7 @@ const projects = [
     ],
     links: {
       live: 'https://veraos.ai',
-      github: 'https://github.com/juliocalvor811-svg/veraos'
+      github: 'https://github.com/juliocalvorios/veraos'
     },
 
     // Full Article Data
@@ -509,7 +509,7 @@ const projects = [
     ],
     links: {
       live: 'https://veraos.ai',
-      github: 'https://github.com/juliocalvor811-svg/veraos'
+      github: 'https://github.com/juliocalvorios/veraos'
     },
 
     // Full Article Data

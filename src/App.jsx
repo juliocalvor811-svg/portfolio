@@ -235,7 +235,7 @@ const SocialIcon = ({ type, className = "w-4 h-4" }) => {
 
 function Footer({ onSectionChange, onPrintEdition }) {
   const socialLinks = [
-    { href: 'https://github.com/juliocalvo', label: 'GitHub', icon: 'github', isExternal: true },
+    { href: 'https://github.com/juliocalvorios', label: 'GitHub', icon: 'github', isExternal: true },
     { href: 'https://linkedin.com/in/juliocalvorios', label: 'LinkedIn', icon: 'linkedin', isExternal: true },
     { href: 'mailto:juliocalvorios@gmail.com', label: 'Email', icon: 'email', isExternal: false },
     { href: 'https://npmjs.com/package/react-ai-highlight-parser', label: 'npm', icon: 'npm', isExternal: true },
