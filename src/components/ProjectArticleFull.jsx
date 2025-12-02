@@ -6,22 +6,28 @@ import HighlightShowcaseTabs from './ui/HighlightShowcaseTabs'
 import AcademicFlowTabs from './ui/AcademicFlowTabs'
 import VeraTechStackDiagram from './ui/VeraTechStackDiagram'
 
-// Video Player Component with lazy loading
+// Video Player Component with lazy loading and viewport-aware playback
 function VideoPlayer({ src }) {
   const videoRef = useRef(null)
   const containerRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [userPaused, setUserPaused] = useState(false)
 
-  // Lazy load when in viewport
+  // Lazy load and track visibility
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isLoaded) {
+        const visible = entry.isIntersecting
+        setIsVisible(visible)
+        
+        // Load video when first visible
+        if (visible && !isLoaded) {
           setIsLoaded(true)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 } // 30% visible to trigger
     )
 
     if (containerRef.current) {
@@ -31,20 +37,27 @@ function VideoPlayer({ src }) {
     return () => observer.disconnect()
   }, [isLoaded])
 
-  // Auto-play when loaded
+  // Play/pause based on visibility (only if user hasn't manually paused)
   useEffect(() => {
-    if (isLoaded && videoRef.current) {
-      videoRef.current.play()
+    if (!isLoaded || !videoRef.current) return
+    
+    if (isVisible && !userPaused) {
+      videoRef.current.play().catch(() => {})
       setIsPlaying(true)
+    } else {
+      videoRef.current.pause()
+      setIsPlaying(false)
     }
-  }, [isLoaded])
+  }, [isVisible, isLoaded, userPaused])
 
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause()
+        setUserPaused(true) // User manually paused
       } else {
-        videoRef.current.play()
+        videoRef.current.play().catch(() => {})
+        setUserPaused(false) // User wants to play
       }
       setIsPlaying(!isPlaying)
     }

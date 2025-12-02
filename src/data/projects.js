@@ -167,7 +167,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/vera-flashcards-demo.mp4',
+        src: '/videos/flashcards-widget-video.mp4',
         caption: 'Flashcards in action: spaced repetition, study sessions, flip animations, and progress tracking.'
       },
       {
