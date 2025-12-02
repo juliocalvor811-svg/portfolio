@@ -112,7 +112,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/vera-library-demo.mp4',
+        src: '/videos/libraryinterfacevideo.mp4',
         caption: 'The library system: folders, drag-and-drop, search, and real-time sync.'
       },
       {
