@@ -68,7 +68,14 @@ function FrontPage({ onProjectClick }) {
 
               {/* Tech tags */}
               <div className="mt-3 sm:mt-4 flex flex-wrap gap-1.5 sm:gap-2">
-                {leadStory.tech.map(tech => (
+                {(Array.isArray(leadStory.tech) 
+                  ? leadStory.tech 
+                  : Object.entries(leadStory.tech).flatMap(([key, val]) => 
+                      key === 'languages' 
+                        ? val.map(l => l.name) 
+                        : val
+                    )
+                ).map(tech => (
                   <span
                     key={tech}
                     className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 sm:py-1 bg-neutral-100 border border-neutral-200 text-neutral-600"

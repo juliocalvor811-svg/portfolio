@@ -16,14 +16,23 @@ const projects = [
       and search, and academic tools with spaced repetition. Built over 12 months as a way 
       to learn modern frontend development and AI integration.`,
     pullQuote: '"The best way to learn frontend is to build something too ambitious and figure it out."',
-    tech: ['React 18', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Groq API', 'Three.js', 'Vite'],
+    tech: {
+      languages: [
+        { name: 'JavaScript', percentage: 80.7 },
+        { name: 'HTML', percentage: 10.6 },
+        { name: 'TypeScript', percentage: 6.5 },
+        { name: 'PLpgSQL', percentage: 2.2 },
+      ],
+      backend: ['Supabase', 'Edge Functions', 'Stripe'],
+      ai: ['6 LLM Providers', 'Embeddings Server']
+    },
     features: [
+      '100K+ lines codebase',
       'Interactive Highlight System',
       'Drag-and-Drop Widgets',
       'Chat Library with Folders',
       'Real-time Streaming',
-      'Flashcards with Spaced Repetition',
-      'Dark/Light Themes'
+      'Flashcards with Spaced Repetition'
     ],
     links: {
       live: 'https://veraos.ai',
@@ -138,20 +147,16 @@ const projects = [
       },
       {
         type: 'subheading',
-        content: 'The Chat Experience'
+        content: 'Upgrade Plans & Internationalization'
       },
       {
         type: 'text',
-        content: 'The chat interface handles streaming responses, markdown rendering (including tables and code blocks with syntax highlighting), file attachments with drag-and-drop, and draft auto-save per conversation. When you close a chat mid-message and return later, your draft is still there. Small details, but they add up to an experience that feels professional rather than hobbyist.'
-      },
-      {
-        type: 'text',
-        content: 'File uploads validate more than just extensions. The system checks magic bytes to verify files actually are what they claim to be — a security measure most tutorials skip. Filenames are sanitized to prevent path traversal attacks. These aren\'t features users notice, but they\'re the difference between a demo and a product.'
+        content: 'veraOS offers tiered subscription plans integrated with Stripe: Free, Pro, Student, and Annual. The upgrade flow includes animated pricing cards and seamless checkout. The entire app supports English, Spanish, French, and German through i18next, with all UI elements adapting when you switch languages.'
       },
       {
         type: 'video',
-        src: '/videos/vera-chat-demo.mp4',
-        caption: 'The chat experience: streaming responses, markdown rendering, syntax highlighting, and file attachments.'
+        src: '/videos/settings-upgrade.mp4',
+        caption: 'Settings panel with upgrade flow, Stripe integration, and language switching.'
       },
       {
         type: 'subheading',
@@ -170,6 +175,7 @@ const projects = [
         src: '/videos/flashcards-widget-video.mp4',
         caption: 'Flashcards in action: spaced repetition, study sessions, flip animations, and progress tracking.'
       },
+
       {
         type: 'subheading',
         content: 'Technical Architecture'
@@ -189,16 +195,16 @@ const projects = [
       {
         type: 'list',
         items: [
+          'Multi-provider AI routing across OpenAI, Claude, Gemini, Groq, Mistral, and Scaleway — with automatic fallbacks and region-aware routing for EU compliance',
           'Supabase for auth, PostgreSQL database, real-time subscriptions, and file storage',
-          'Groq API for fast AI inference with streaming (sub-second first token)',
-          'Three.js + Simplex Noise for the animated central circle',
+          'Stripe integration for subscriptions with webhook handling and tier-based feature gating',
           'Custom embeddings server on Render (MiniLM-L12-v2, 384 dimensions)',
+          'Three.js + Simplex Noise for the animated central circle',
           'AES-256-GCM encryption for sensitive message data (client-side)',
-          'Framer Motion for complex UI animations and transitions',
-          'i18next for internationalization (English, Spanish, Portuguese)',
+          'i18next for internationalization (English, Spanish, French, German)',
           'DOMPurify for XSS protection on all user-generated content',
           'Lazy loading for all widgets and modals (400KB bundle reduction)',
-          'Debounced Supabase sync with change detection to minimize writes'
+          '20+ Supabase Edge Functions as secure API proxies'
         ]
       },
       {
@@ -256,121 +262,319 @@ const projects = [
   {
     id: 2,
     // Card Preview Data
-    title: 'Newspaper Portfolio: A Frontend Love Letter to Editorial Design',
-    subtitle: 'Turning a portfolio into an interactive broadsheet with scroll animations and print edition',
-    name: 'Portfolio',
-    category: 'DESIGN',
-    type: 'Personal Site',
+    title: 'Ontario Flag Time Machine: Where Vexillology Meets Vintage Tech',
+    subtitle: 'An interactive journey through 260 years of Ontario\'s flag history with retro hardware aesthetics',
+    name: 'Flag Time Machine',
+    category: 'FRONTEND · HISTORY',
+    type: 'Interactive Experience',
     year: '2025',
-    content: `Most developer portfolios look the same. This one is designed as a vintage 
-      newspaper — complete with masthead, columns, pull quotes, and a downloadable 
-      print edition. Because if you're going to show frontend skills, show range.`,
-    fullContent: `A portfolio website designed as an interactive newspaper. Features include 
-      scroll-triggered animations, a functional print edition modal, reading progress bar, 
-      and responsive layouts that maintain the editorial aesthetic across all devices.`,
-    pullQuote: '"Your portfolio is a product. Design it like one."',
-    tech: ['React', 'Tailwind CSS', 'Framer Motion', 'Vite'],
+    content: `What if exploring history felt like operating a vintage piece of equipment?
+      This time machine lets you travel from 1763 to today, watching Ontario's flag evolve
+      through colonial rule, confederation, and provincial identity — all through brass
+      levers, nixie tube displays, and toggle switches.`,
+    fullContent: `An interactive web experience built with Next.js and TypeScript that visualizes
+      the evolution of Ontario's flag from 1763 to present day. Features a vintage control panel
+      aesthetic with functional brass levers, glowing nixie tube year displays, and historically
+      accurate flag renderings for each era.`,
+    pullQuote: '"The best interfaces don\'t feel like interfaces. They feel like instruments."',
+    tech: {
+      languages: [
+        { name: 'TypeScript', percentage: 85 },
+        { name: 'CSS', percentage: 15 }
+      ],
+      frontend: ['Next.js 14', 'React 18', 'Tailwind CSS'],
+      tools: ['SVG Rendering', 'CSS Animations', 'Custom Hooks']
+    },
     features: [
-      'Newspaper Layout',
-      'Print Edition',
-      'Scroll Animations',
-      'Reading Progress',
-      'Responsive Design'
+      'Vintage Control Panel UI',
+      'Nixie Tube Year Display',
+      'Historical Flag Accuracy',
+      'Keyboard Navigation',
+      'PNG/SVG Export',
+      '8 Distinct Historical Eras'
     ],
     links: {
-      live: 'https://juliocalvo.dev',
-      github: 'https://github.com/juliocalvorios/portfolio'
+      live: 'https://ontario-flag.juliocalvo.dev',
+      github: 'https://github.com/juliocalvorios/ontario-flag-time-machine'
     },
 
     // Full Article Data
-    date: 'January 2025',
-    readTime: '5',
-    image: '/images/portfolio-project/newspaper-hero.png',
-    imageCaption: 'The portfolio as interactive newspaper, complete with masthead and columns.',
+    date: 'December 2025',
+    readTime: '8',
+    image: '/images/ontario-flag-project/time-machine-hero.png',
+    imageCaption: 'The Ontario Flag Time Machine interface with brass controls and nixie tube display.',
     author: {
       name: 'Julio Calvo',
       title: 'Frontend Developer'
     },
     duration: '2 weeks',
-    role: 'Designer & Developer',
+    role: 'Solo Developer & Designer',
 
-    lede: `Developer portfolios have a sameness problem. Dark theme, hero section, project cards, contact form. Functional, forgettable. I wanted something that would make someone pause — that would demonstrate frontend range through the design itself, not just the projects listed. The answer was a newspaper. Vintage editorial design, but interactive. Print-inspired, but thoroughly digital.`,
+    lede: `Most history websites present information like textbooks — walls of text, maybe a timeline, definitely boring. I wanted to build something different: an experience where exploring Ontario's flag history felt like operating a piece of vintage laboratory equipment. Brass levers you actually drag. Nixie tubes that glow orange as years tick by. Toggle switches with satisfying clicks. The result is a time machine that spans 260 years of Canadian history, from British colonial rule to the present day.`,
 
     bodyParagraphs: [
       {
-        type: 'text',
-        content: 'The concept started with a constraint: what if the portfolio itself was the most impressive project? Not just a container for other work, but a demonstration of layout skill, animation polish, and design thinking. Newspapers offered the perfect metaphor — they\'re information-dense, hierarchy-driven, and have centuries of refined typography conventions to draw from.'
-      },
-      {
         type: 'subheading',
-        content: 'Editorial Layout in CSS'
+        content: 'The Vintage Hardware Aesthetic'
       },
       {
         type: 'text',
-        content: 'The multi-column layouts use CSS Grid extensively. Articles flow naturally, pull quotes break the rhythm intentionally, and the hierarchy guides the eye without explicit instructions. This is harder than it sounds — responsive editorial layout means the same content must work as a three-column broadsheet on desktop and a single-column mobile experience without losing its newspaper character.'
-      },
-      {
-        type: 'pullquote',
-        content: 'Good typography is invisible. Great typography makes you want to read.',
-        attribution: 'Design Principle'
-      },
-      {
-        type: 'subheading',
-        content: 'Scroll-Triggered Animations'
-      },
-      {
-        type: 'text',
-        content: 'Elements reveal as you scroll — but subtly. No dramatic fly-ins or bounces. Articles fade up slightly as they enter the viewport. The reading progress bar at the top uses requestAnimationFrame for buttery 60fps updates. These details don\'t scream for attention; they just make the experience feel polished.'
-      },
-      {
-        type: 'subheading',
-        content: 'The Print Edition'
-      },
-      {
-        type: 'text',
-        content: 'Click "Print Edition" and the site transforms into a downloadable PDF-style view. Same content, reformatted for paper. This isn\'t just a print stylesheet — it\'s a completely different layout optimized for physical media. Because if you\'re going to commit to the newspaper metaphor, commit fully.'
+        content: 'The interface draws inspiration from 1960s scientific instruments — the kind you\'d find in a physics lab or radio station. Every element reinforces this theme: the bakelite panel backgrounds with subtle noise textures, brass fixtures that catch the light with CSS gradients, indicator LEDs that glow with actual blur filters, and engraved plate labels in monospace uppercase. The attention to material authenticity makes the digital feel physical.'
       },
       {
         type: 'list',
         items: [
-          'Masthead with date, edition number, and navigation',
-          'Multi-column article layouts with proper text flow',
-          'Pull quotes and drop caps for editorial authenticity',
-          'Reading progress bar with smooth animation',
-          'Print edition modal with paper-optimized layout',
-          'Sound effects (optional) for interactions'
+          'Bakelite-textured panels with SVG noise overlays at 3% opacity',
+          'Brass gradients using 4-stop linear gradients (#e8d4b0 → #d4b896 → #c9a86c → #8b7355)',
+          'LED indicators with feGaussianBlur SVG filters for authentic glow',
+          'JetBrains Mono for plate labels — monospace uppercase with 0.15em letter-spacing',
+          'Inset box-shadows simulating panel depth and worn edges'
+        ]
+      },
+      {
+        type: 'video',
+        src: '/videos/ontario-flag/vintage-controls-demo.mp4',
+        caption: 'The control panel in action: brass lever slides through years while nixie tubes update with characteristic orange glow.'
+      },
+      {
+        type: 'subheading',
+        content: 'The Year Lever: Draggable Time Travel'
+      },
+      {
+        type: 'text',
+        content: 'The year control isn\'t a slider — it\'s a brass lever that slides along a track with notched positions at historically significant years. As you drag, a nixie tube display updates with that characteristic orange glow. The interaction feels mechanical: there\'s visual resistance at era boundaries, and the lever snaps to key years like 1867 (Confederation) and 1965 (flag adoption).'
+      },
+      {
+        type: 'text',
+        content: 'Building this required separating visual state from data state. The lever position updates on every mouse move for smooth 60fps dragging, but the year value only changes when crossing thresholds. CSS transitions handle the lever movement while React state manages the actual year — preventing the flag from flickering during rapid dragging while keeping the lever responsive.'
+      },
+      {
+        type: 'video',
+        src: '/videos/ontario-flag/lever-interaction.mp4',
+        caption: 'Drag the brass lever to navigate through 260 years. Notice how the flag transitions smoothly between historical eras.'
+      },
+      {
+        type: 'pullquote',
+        content: 'The best interfaces don\'t feel like interfaces. They feel like instruments.',
+        attribution: 'Design Philosophy'
+      },
+      {
+        type: 'subheading',
+        content: 'Nixie Tube Display: Typography That Glows'
+      },
+      {
+        type: 'text',
+        content: 'The year display uses the nixie tube aesthetic — those vacuum tubes from the 1950s-70s where digits glow orange behind glass. In CSS, this required layered effects: the base text in #ff6b35, a Gaussian blur filter creating the glow halo, and a subtle radial gradient simulating the glass tube curvature. Each digit sits in its own "tube" container with dark backgrounds and brass bezels.'
+      },
+      {
+        type: 'nixie-showcase',
+        caption: 'Interactive demonstration: Watch how the nixie tubes transition between years with authentic glow effects and digit animations.'
+      },
+      {
+        type: 'subheading',
+        content: 'Toggle Switches: State with Physicality'
+      },
+      {
+        type: 'text',
+        content: 'The Union Jack and Shield toggles use a vintage switch design. Each switch has a brass toggle that slides in a recessed track, with embossed grip lines for visual texture. When toggled, the LED indicator above glows green (on) or stays dark (off). The switch state affects the flag render in real-time — toggle off the Union Jack and the canton disappears, revealing what a modified ensign might have looked like.'
+      },
+      {
+        type: 'video',
+        src: '/videos/ontario-flag/toggle-switches.mp4',
+        caption: 'Toggle the Union Jack and Shield elements on/off. LED indicators provide immediate visual feedback.'
+      },
+      {
+        type: 'subheading',
+        content: 'Historical Accuracy: 8 Distinct Eras'
+      },
+      {
+        type: 'text',
+        content: 'Ontario\'s flag history is more complex than most people realize. Before the current flag (adopted in 1965), the province used variations of the Canadian Red Ensign — itself evolving through multiple versions as Canada\'s coat of arms changed in 1868, 1922, and 1957. Go back further and you reach Upper Canada (1791-1867), and before that, British colonial administration under the Royal Proclamation of 1763.'
+      },
+      {
+        type: 'era-timeline',
+        caption: 'Interactive timeline: Click any era to jump directly to that period and see the corresponding flag.'
+      },
+      {
+        type: 'list',
+        items: [
+          '1763-1791: British Colonial Period — Union Jack flies over the new Province of Quebec',
+          '1791-1867: Upper Canada Era — Constitutional Act creates distinct province',
+          '1867: Confederation — Ontario becomes founding province of Canada',
+          '1868-1921: First Red Ensign — Original Canadian coat of arms on red field',
+          '1922-1956: Updated Red Ensign — Revised arms with new provincial shields',
+          '1957-1964: Final Red Ensign — Simplified maple leaf design',
+          '1965: The Vote — Ontario officially adopts its own provincial flag',
+          '1965-Present: Current Flag — Red Ensign with Ontario shield'
+        ]
+      },
+      {
+        type: 'text',
+        content: 'Each era in the time machine shows the historically accurate flag with proper proportions, correct heraldic elements, and appropriate weathering based on the selected texture mode. The contextual text updates to explain what was happening politically — why the flag changed, what it represented, and how Ontario\'s identity evolved.'
+      },
+      {
+        type: 'pullquote',
+        content: 'I spent hours studying actual flag specifications and historical photographs. The Union Jack diagonal stripes alone have specific offsets to maintain proper counterchanging when quartered.',
+        attribution: 'On Historical Research'
+      },
+      {
+        type: 'subheading',
+        content: 'SVG Flag Rendering: Scalable Heraldry'
+      },
+      {
+        type: 'text',
+        content: 'The flags are rendered entirely in SVG for crisp scaling at any resolution. This sounds simple until you try to build a Union Jack correctly — the diagonal stripes must be offset from center, the red Cross of St. Patrick sits counterchanged (different position above/below, left/right), and the proportions must be exactly 1:2. The Ontario shield adds another layer: the Cross of St. George, three maple leaves in proper arrangement, and heraldic coloring that changes based on the selected palette.'
+      },
+      {
+        type: 'flag-anatomy',
+        caption: 'Interactive diagram: Hover over flag elements to see their heraldic names, proportions, and historical significance.'
+      },
+      {
+        type: 'text',
+        content: 'The rendering system supports two texture modes: "solid" for clean, modern appearance, and "aged" which applies subtle weathering effects — SVG filters that add noise and slight color desaturation to simulate historical artifacts. Users can also cycle through color palettes, from accurate historical tones to stylized options, letting them customize the aesthetic while maintaining design accuracy.'
+      },
+      {
+        type: 'video',
+        src: '/videos/ontario-flag/texture-palette-demo.mp4',
+        caption: 'Cycle through texture modes (solid/aged) and color palettes. The flag adapts while maintaining historical accuracy.'
+      },
+      {
+        type: 'subheading',
+        content: 'Keyboard Navigation: Power User Experience'
+      },
+      {
+        type: 'text',
+        content: 'Every control in the interface is accessible via keyboard. Arrow keys move through years (shift for decades), up/down arrows jump between historical eras. Home and End jump to 1763 and present day. Letter keys toggle interface elements: U for Union Jack, S for shield, P for palette, T for texture. Press ? to see all shortcuts in a modal. This makes the experience accessible and efficient for repeated exploration.'
+      },
+      {
+        type: 'keyboard-map',
+        caption: 'Full keyboard shortcut reference. Every control is accessible without a mouse.'
+      },
+      {
+        type: 'list',
+        items: [
+          '← → : Navigate years (±1 year)',
+          'Shift + ← → : Navigate decades (±10 years)',
+          '↑ ↓ : Jump to next/previous historical era',
+          'Home / End : Jump to 1763 or 2025',
+          'U : Toggle Union Jack visibility',
+          'S : Toggle Shield visibility',
+          'P : Cycle through color palettes',
+          'T : Toggle texture mode (solid/aged)',
+          '? : Show keyboard shortcuts help'
         ]
       },
       {
         type: 'subheading',
-        content: 'Why This Approach'
+        content: 'Export System: PNG & SVG Downloads'
       },
       {
         type: 'text',
-        content: 'A portfolio should demonstrate range. Anyone can center a div. The question is: can you build something with personality that still works perfectly? Can you handle complex layouts? Do you sweat the details? This newspaper portfolio answers those questions before a single project is even clicked.'
+        content: 'Any flag configuration can be downloaded as PNG or SVG. The export preserves the current year\'s flag design, selected color palette, and texture mode. Filenames are automatically generated with the year and era (e.g., "ontario-flag-1965-adoption.png") for easy organization. The PNG export uses Canvas API for rasterization at 2x resolution for retina displays; SVG exports the raw vector for infinite scaling.'
+      },
+      {
+        type: 'video',
+        src: '/videos/ontario-flag/export-demo.mp4',
+        caption: 'Download any flag configuration as PNG (raster) or SVG (vector). Filenames include year and era automatically.'
+      },
+      {
+        type: 'subheading',
+        content: 'Technical Architecture'
+      },
+      {
+        type: 'text',
+        content: 'The project is built with Next.js 14 and TypeScript in strict mode, using the App Router for clean project structure. Tailwind CSS handles styling with CSS custom properties for the vintage color palette — changing a single variable updates brass tones across every component. The flag component tree is memoized aggressively to prevent unnecessary re-renders during lever dragging.'
+      },
+      {
+        type: 'tech-stack',
+        caption: 'Architecture diagram: See how components connect, from user input through state management to SVG rendering.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Next.js 14 with App Router and TypeScript strict mode',
+          'Tailwind CSS with custom design tokens for vintage palette',
+          'Custom branded Year type preventing invalid year values',
+          'useCallback hooks with proper dependency arrays for keyboard events',
+          'SVG filters (feGaussianBlur, feTurbulence) for nixie glow and texture effects',
+          'Canvas API for PNG export at 2x resolution',
+          'CSS transitions with cubic-bezier easing for lever movement',
+          'ResizeObserver for responsive flag scaling'
+        ]
+      },
+      {
+        type: 'text',
+        content: 'State management uses React hooks exclusively — no external libraries. The year is stored as a branded TypeScript type that prevents invalid values at compile time. Palette and texture state use simple useState with localStorage persistence, so preferences survive page refresh. The keyboard handler uses useCallback with proper dependencies to avoid stale closures while maintaining 60fps responsiveness.'
+      },
+      {
+        type: 'pullquote',
+        content: 'History becomes interesting when you can interact with it. The goal was making 260 years of vexillology feel like discovery, not homework.',
+        attribution: 'Project Reflection'
+      },
+      {
+        type: 'subheading',
+        content: 'CSS Details: Making Digital Feel Physical'
+      },
+      {
+        type: 'text',
+        content: 'The vintage aesthetic required obsessive attention to CSS details. The noise texture overlay uses an inline SVG with feTurbulence, applied at 3% opacity so it\'s felt more than seen. Brass components use 4-stop gradients with highlights and shadows baked in. The panel backgrounds combine linear gradients with inset box-shadows to simulate depth and wear. Every element has the same material language — brass, bakelite, glass — creating a cohesive instrument rather than a collection of UI widgets.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Noise overlay: feTurbulence SVG filter at baseFrequency="0.9" with fractalNoise',
+          'Brass gradient: linear-gradient(180deg, #e8d4b0 0%, #d4b896 20%, #c9a86c 60%, #8b7355 100%)',
+          'Panel depth: inset box-shadow 0 2px 4px rgba(0,0,0,0.5) combined with outer shadow',
+          'Screw details: radial gradients with pseudo-element slot lines',
+          'LED glow: feGaussianBlur stdDeviation="0.8" with feMerge for layered effect'
+        ]
+      },
+      {
+        type: 'subheading',
+        content: 'Why This Project Matters'
+      },
+      {
+        type: 'text',
+        content: 'I built this because I wanted to prove that "serious" subjects don\'t require boring interfaces. Canadian provincial history could be a Wikipedia article. Instead, it\'s an instrument you operate — and operating it teaches you something. The vintage aesthetic isn\'t just decoration; it creates a sense of occasion, of handling something significant. That emotional engagement is what makes information stick.'
+      },
+      {
+        type: 'text',
+        content: 'This project also demonstrates frontend range beyond typical SaaS interfaces. Historical data visualization. Custom component design with attention to material authenticity. Full keyboard accessibility. SVG mastery for complex heraldic rendering. CSS craftsmanship that makes digital feel physical. Not every project needs a vintage theme, but every project benefits from this level of intentionality about how the interface feels, not just how it functions.'
+      },
+      {
+        type: 'text',
+        content: 'For a Toronto-based role, there\'s also a local angle: Ontario\'s flag represents the province where I\'m building my career. Understanding its history — from British colony to Confederation founding member to distinct provincial identity — grounds my work in the place where I live. The time machine isn\'t just a portfolio piece; it\'s a love letter to Ontario, built with the best frontend tools available.'
       }
     ],
 
     technicalDetails: [
       {
-        title: 'Layout System',
-        description: 'CSS Grid-based editorial layout with responsive breakpoints that maintain newspaper character across all screen sizes.'
+        title: 'Framework',
+        description: 'Next.js 14 with App Router. TypeScript in strict mode. Tailwind CSS with custom design tokens for the vintage aesthetic.'
       },
       {
-        title: 'Animations',
-        description: 'Scroll-triggered reveals using Intersection Observer. Reading progress bar with requestAnimationFrame for 60fps smoothness.'
+        title: 'Flag Rendering',
+        description: 'Pure SVG components with accurate heraldic proportions. Supports solid and aged texture modes. Multiple color palettes.'
       },
       {
-        title: 'Print Edition',
-        description: 'Dedicated modal with paper-optimized layout. Not just a print stylesheet — a complete reformatting for physical media.'
+        title: 'Vintage UI Components',
+        description: 'Custom brass lever, nixie tube display, and toggle switches. CSS gradients simulate metal surfaces. SVG filters create glow effects.'
       },
       {
-        title: 'Typography',
-        description: 'Careful font pairing, proper leading, and responsive type scales. Drop caps and pull quotes for editorial authenticity.'
+        title: 'Interaction Design',
+        description: 'Full keyboard navigation with era jumping. Touch-friendly lever control. Responsive layout adapts vintage aesthetic to mobile.'
+      },
+      {
+        title: 'Export System',
+        description: 'PNG export via Canvas API. Native SVG export. Auto-generated filenames with year and era metadata.'
+      },
+      {
+        title: 'Historical Data',
+        description: '8 distinct eras from 1763-present. Contextual descriptions for each period. Accurate flag specifications per era.'
       }
     ],
 
-    conclusion: 'The best portfolios don\'t just list projects — they are projects. This newspaper design demonstrates layout skills, animation polish, responsive thinking, and attention to detail. It\'s a frontend love letter to editorial design, and it\'s the first impression before anything else gets clicked.'
+    conclusion: 'The Ontario Flag Time Machine proves that educational tools can have personality. By treating history as something worth designing for — not just displaying — the project turns passive reading into active exploration. The vintage interface isn\'t nostalgic whimsy; it\'s a deliberate choice to make 260 years of vexillology feel tangible. Sometimes the best way to understand the past is to build a machine that takes you there.'
   },
   {
     id: 3,

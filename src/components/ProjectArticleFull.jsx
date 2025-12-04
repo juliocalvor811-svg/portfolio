@@ -5,6 +5,8 @@ import VeraHighlightShowcase from './ui/VeraHighlightShowcase'
 import HighlightShowcaseTabs from './ui/HighlightShowcaseTabs'
 import AcademicFlowTabs from './ui/AcademicFlowTabs'
 import VeraTechStackDiagram from './ui/VeraTechStackDiagram'
+import WidgetShowcase from './ui/WidgetShowcase'
+import TechStackBar from './ui/TechStackBar'
 
 // Video Player Component with lazy loading and viewport-aware playback
 function VideoPlayer({ src }) {
@@ -173,7 +175,7 @@ function ProjectArticleFull({ projectId, onClose }) {
           {/* How this was built */}
           <p className="text-[10px] sm:text-xs text-neutral-500 mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-neutral-100">
             <span className="font-semibold text-neutral-600">How this was built:</span>{' '}
-            {project.duration} of development as {project.role.toLowerCase()}, using {project.tech.slice(0, 3).join(', ')}.
+            {project.duration} of development as {project.role.toLowerCase()}, using {Array.isArray(project.tech) ? project.tech.slice(0, 3).join(', ') : Object.entries(project.tech).flatMap(([key, val]) => key === 'languages' ? val.map(l => l.name) : val).slice(0, 3).join(', ')}.
           </p>
         </div>
       </div>
@@ -336,6 +338,13 @@ function ProjectArticleFull({ projectId, onClose }) {
                   </figure>
                 )}
 
+                {paragraph.type === 'widget-showcase' && (
+                  <WidgetShowcase 
+                    title={paragraph.title} 
+                    widgets={paragraph.widgets} 
+                  />
+                )}
+
               </div>
             ))}
           </div>
@@ -388,20 +397,8 @@ function ProjectArticleFull({ projectId, onClose }) {
               </dl>
             </div>
 
-            {/* Technologies */}
-            <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
-              <h3 className="text-[10px] sm:text-xs tracking-wider sm:tracking-widest font-bold mb-3 sm:mb-4">TECHNOLOGIES</h3>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {project.tech.map(tech => (
-                  <span
-                    key={tech}
-                    className="text-[9px] sm:text-[10px] tracking-wider px-2 sm:px-3 py-1 sm:py-1.5 bg-white border border-neutral-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {/* Technologies - GitHub style bar */}
+            <TechStackBar tech={project.tech} />
 
             {/* Key Features */}
             <div className="bg-neutral-50 border border-neutral-200 p-4 sm:p-5">
