@@ -1399,6 +1399,205 @@ describe('getFlagForYear - boundary transitions', () => {
     ],
 
     conclusion: 'This project demonstrates that frontend engineering is more than component composition. State decoupling, type safety, correct geometric rendering, comprehensive keyboard support, and proper testing — these are the skills that separate junior work from production-ready code. The vintage aesthetic is a design choice; the architecture underneath is engineering discipline.'
+  },
+  {
+    id: 6,
+    // Card Preview Data
+    title: 'Open Source: Publishing npm Packages That Solve Real Problems',
+    subtitle: 'From internal tool to published package — building reusable code for the React ecosystem',
+    name: 'Open Source',
+    category: 'OPEN SOURCE · NPM',
+    type: 'npm Packages',
+    year: '2025',
+    content: `Building veraOS meant solving problems that didn't have good existing solutions.
+      The highlight parser started as internal code, but it was useful enough to extract,
+      document, and publish. That's the open source mindset: if it helped me, it might help others.`,
+    fullContent: `A collection of npm packages extracted from production projects. Each package
+      solves a specific problem with minimal dependencies and clear APIs. Published with
+      TypeScript types, comprehensive documentation, and real-world usage examples.`,
+    pullQuote: '"The best libraries come from solving your own problems first."',
+    tech: {
+      languages: [
+        { name: 'TypeScript', percentage: 95 },
+        { name: 'JavaScript', percentage: 5 }
+      ],
+      tools: ['tsup', 'npm', 'ESM/CJS']
+    },
+    features: [
+      'TypeScript-first',
+      'Zero Dependencies',
+      'Tree-shakeable',
+      'Full Type Definitions',
+      'Streaming Support',
+      'Production Tested'
+    ],
+    links: {
+      npm: 'https://npmjs.com/package/react-ai-highlight-parser',
+      github: 'https://github.com/juliocalvo/react-ai-highlight-parser'
+    },
+
+    // Full Article Data
+    date: 'December 2025',
+    readTime: '6',
+    image: '/images/open-source/npm-packages.png',
+    imageCaption: 'react-ai-highlight-parser on npm — semantic highlighting for AI responses.',
+    author: {
+      name: 'Julio Calvo',
+      title: 'Frontend Developer'
+    },
+    duration: 'Ongoing',
+    role: 'Author & Maintainer',
+
+    lede: `Most developers consume open source. Fewer contribute. Even fewer publish their own packages. When I built veraOS, the highlight system for AI responses became complex enough that I realized it deserved to be its own thing — tested, documented, and available for anyone with the same problem. That's how react-ai-highlight-parser was born: not as a portfolio piece, but as a real tool extracted from a real product.`,
+
+    bodyParagraphs: [
+      {
+        type: 'subheading',
+        content: 'react-ai-highlight-parser'
+      },
+      {
+        type: 'text',
+        content: 'AI chat interfaces return plain text. But what if the AI could semantically mark important content — key points in yellow, definitions in blue, warnings in red — and the interface could render those marks as actual highlights? That\'s what this parser does. It takes AI responses with codes like [Y]important[/Y] and converts them to styled React components.'
+      },
+      {
+        type: 'text',
+        content: 'The tricky part isn\'t the regex. It\'s handling edge cases: nested tags, malformed markup from streaming responses, code blocks that shouldn\'t be highlighted, and orphaned closing tags. The parser uses a token-based approach with a stack for proper nesting — the same technique used in real parsers, just scoped to a specific problem.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `// Token-based parsing with stack for nested highlights
+const tokens = text.split(/(\\[\\/?(?:Y|B|O|G|R)\\])/g);
+const stack: Array<{ code: string; startIndex: number }> = [];
+
+for (const token of tokens) {
+  const openMatch = token.match(/^\\[(Y|B|O|G|R)\\]$/);
+  if (openMatch) {
+    stack.push({ code: openMatch[1], startIndex: output.length });
+    continue;
+  }
+
+  const closeMatch = token.match(/^\\[\\/(Y|B|O|G|R)\\]$/);
+  if (closeMatch) {
+    // Find matching opener, wrap content, handle nesting
+  }
+}`
+      },
+      {
+        type: 'list',
+        items: [
+          '10 semantic highlight codes (Yellow, Blue, Orange, Green, Red, Pink, Light Blue, Gray, Purple, Brown)',
+          '3 display modes: background highlights, underlines, or both combined',
+          '2 color palettes: vibrant (high contrast) and natural (muted)',
+          'Streaming-safe: handles partial/incomplete tags gracefully',
+          'Code block protection: syntax highlighting isn\'t affected',
+          'Zero runtime dependencies beyond React'
+        ]
+      },
+      {
+        type: 'highlight-showcase',
+        caption: 'Live demo: The highlight parser in action with different modes and palettes.'
+      },
+      {
+        type: 'subheading',
+        content: 'Publishing Process'
+      },
+      {
+        type: 'text',
+        content: 'Extracting internal code into a package requires more than copying files. The API needs to be clean — no internal assumptions leaking out. Types need to be exported properly. The build needs to output both ESM and CommonJS. Documentation needs to cover installation, basic usage, and edge cases. Tests need to verify the public API, not implementation details.'
+      },
+      {
+        type: 'code',
+        language: 'json',
+        content: `{
+  "name": "react-ai-highlight-parser",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts"
+  }
+}`
+      },
+      {
+        type: 'text',
+        content: 'The package uses tsup for building — it handles TypeScript compilation, bundling, and declaration file generation in one tool. Peer dependencies keep the bundle small: React is required but not bundled, so users don\'t download it twice.'
+      },
+      {
+        type: 'subheading',
+        content: 'API Design Decisions'
+      },
+      {
+        type: 'text',
+        content: 'The package exports both a React component and a pure function. The component is convenient for most cases. The function is useful when you need the HTML string directly — for server-side rendering or storing pre-processed content. Both use the same underlying parser, so behavior is identical.'
+      },
+      {
+        type: 'code',
+        language: 'tsx',
+        content: `// React component — most common usage
+import { HighlightRenderer } from 'react-ai-highlight-parser';
+
+<HighlightRenderer
+  content={aiResponse}
+  mode="both"
+  palette="vibrant"
+/>
+
+// Pure function — for SSR or preprocessing
+import { parseHighlights } from 'react-ai-highlight-parser';
+
+const html = parseHighlights(aiResponse, 'highlights', 'natural');`
+      },
+      {
+        type: 'text',
+        content: 'Helper functions handle common needs: hasHighlights() checks if processing is needed, removeHighlightCodes() strips all markup for plain text, extractHighlightCodes() returns which codes are used. These aren\'t exciting, but they\'re the difference between a library and a code snippet.'
+      },
+      {
+        type: 'subheading',
+        content: 'What I Learned'
+      },
+      {
+        type: 'text',
+        content: 'Publishing a package changes how you think about code. Internal code can have rough edges — you know the context, you know what to avoid. Public code needs to handle cases you didn\'t anticipate, from users you\'ll never meet. That discipline improves all your code, not just the published parts.'
+      },
+      {
+        type: 'text',
+        content: 'The other lesson: documentation is product design. A README that\'s hard to scan, examples that don\'t copy-paste cleanly, types that don\'t autocomplete well — these are bugs, even if the code works perfectly. The best libraries feel obvious to use. That\'s not accident; it\'s design.'
+      },
+      {
+        type: 'pullquote',
+        content: 'Publishing code forces you to think like a user, not just a developer. That perspective shift is worth more than the package itself.',
+        attribution: 'Reflection'
+      }
+    ],
+
+    technicalDetails: [
+      {
+        title: 'react-ai-highlight-parser',
+        description: 'Token-based parser for AI responses with semantic highlighting. 10 color codes, 3 modes, 2 palettes. Handles streaming, protects code blocks, cleans malformed tags.'
+      },
+      {
+        title: 'Build System',
+        description: 'tsup for TypeScript compilation to ESM and CJS. Generates .d.ts files automatically. Zero-config for simple packages.'
+      },
+      {
+        title: 'Package Structure',
+        description: 'Dual exports for require() and import(). Peer dependencies for React. Tree-shakeable named exports.'
+      },
+      {
+        title: 'Testing',
+        description: 'Unit tests for parser edge cases. Integration tests for React components. Real-world strings from veraOS as test fixtures.'
+      }
+    ],
+
+    conclusion: 'Open source isn\'t about building libraries from scratch — it\'s about recognizing when internal solutions deserve to be shared. react-ai-highlight-parser exists because I needed it, built it well enough to be reusable, and took the time to package it properly. More packages will follow as patterns emerge from other projects. The goal isn\'t npm download counts; it\'s contributing useful code to the ecosystem that helped me learn.'
   }
 ]
 
