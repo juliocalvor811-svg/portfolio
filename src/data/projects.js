@@ -97,7 +97,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/Drag-Drop-Widgets-Video.mp4',
+        src: '/videos/veraOS-Project/Drag-Drop-Widgets-Video.mp4',
         caption: 'Widgets can be dragged, resized, and customized. Layouts persist per user.'
       },
       {
@@ -121,7 +121,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/libraryinterfacevideo.mp4',
+        src: '/videos/veraOS-Project/libraryinterfacevideo.mp4',
         caption: 'The library system: folders, drag-and-drop, search, and real-time sync.'
       },
       {
@@ -155,7 +155,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/settings-upgrade.mp4',
+        src: '/videos/veraOS-Project/settings-upgrade.mp4',
         caption: 'Settings panel with upgrade flow, Stripe integration, and language switching.'
       },
       {
@@ -172,7 +172,7 @@ const projects = [
       },
       {
         type: 'video',
-        src: '/videos/flashcards-widget-video.mp4',
+        src: '/videos/veraOS-Project/flashcards-widget-video.mp4',
         caption: 'Flashcards in action: spaced repetition, study sessions, flip animations, and progress tracking.'
       },
 
@@ -265,7 +265,7 @@ const projects = [
     title: 'Ontario Flag Time Machine: Where Vexillology Meets Vintage Tech',
     subtitle: 'An interactive journey through 260 years of Ontario\'s flag history with retro hardware aesthetics',
     name: 'Flag Time Machine',
-    category: 'FRONTEND · HISTORY',
+    category: 'FRONTEND · CANADIAN HISTORY',
     type: 'Interactive Experience',
     year: '2025',
     content: `What if exploring history felt like operating a vintage piece of equipment?
@@ -283,7 +283,7 @@ const projects = [
         { name: 'CSS', percentage: 15 }
       ],
       frontend: ['Next.js 14', 'React 18', 'Tailwind CSS'],
-      tools: ['SVG Rendering', 'CSS Animations', 'Custom Hooks']
+      tools: ['SVG Rendering', 'CSS Animations', 'Custom Hooks', 'Jest', 'Playwright']
     },
     features: [
       'Vintage Control Panel UI',
@@ -291,7 +291,7 @@ const projects = [
       'Historical Flag Accuracy',
       'Keyboard Navigation',
       'PNG/SVG Export',
-      '8 Distinct Historical Eras'
+      'Jest + Playwright Testing'
     ],
     links: {
       live: 'https://ontario-flag.juliocalvo.dev',
@@ -301,8 +301,8 @@ const projects = [
     // Full Article Data
     date: 'December 2025',
     readTime: '8',
-    image: '/images/ontario-flag-project/time-machine-hero.png',
-    imageCaption: 'The Ontario Flag Time Machine interface with brass controls and nixie tube display.',
+    video: '/videos/Ontario-Machine-Flag-project/Ontario-Flag.mp4',
+    videoCaption: 'The Ontario Flag Time Machine interface with brass controls and nixie tube display.',
     author: {
       name: 'Julio Calvo',
       title: 'Frontend Developer'
@@ -332,26 +332,8 @@ const projects = [
         ]
       },
       {
-        type: 'video',
-        src: '/videos/ontario-flag/vintage-controls-demo.mp4',
-        caption: 'The control panel in action: brass lever slides through years while nixie tubes update with characteristic orange glow.'
-      },
-      {
-        type: 'subheading',
-        content: 'The Year Lever: Draggable Time Travel'
-      },
-      {
-        type: 'text',
-        content: 'The year control isn\'t a slider — it\'s a brass lever that slides along a track with notched positions at historically significant years. As you drag, a nixie tube display updates with that characteristic orange glow. The interaction feels mechanical: there\'s visual resistance at era boundaries, and the lever snaps to key years like 1867 (Confederation) and 1965 (flag adoption).'
-      },
-      {
-        type: 'text',
-        content: 'Building this required separating visual state from data state. The lever position updates on every mouse move for smooth 60fps dragging, but the year value only changes when crossing thresholds. CSS transitions handle the lever movement while React state manages the actual year — preventing the flag from flickering during rapid dragging while keeping the lever responsive.'
-      },
-      {
-        type: 'video',
-        src: '/videos/ontario-flag/lever-interaction.mp4',
-        caption: 'Drag the brass lever to navigate through 260 years. Notice how the flag transitions smoothly between historical eras.'
+        type: 'year-lever-demo',
+        caption: 'Drag the brass lever to navigate through 260 years. The lever snaps to key historical years like 1867 (Confederation) and 1965 (flag adoption).'
       },
       {
         type: 'pullquote',
@@ -367,8 +349,8 @@ const projects = [
         content: 'The year display uses the nixie tube aesthetic — those vacuum tubes from the 1950s-70s where digits glow orange behind glass. In CSS, this required layered effects: the base text in #ff6b35, a Gaussian blur filter creating the glow halo, and a subtle radial gradient simulating the glass tube curvature. Each digit sits in its own "tube" container with dark backgrounds and brass bezels.'
       },
       {
-        type: 'nixie-showcase',
-        caption: 'Interactive demonstration: Watch how the nixie tubes transition between years with authentic glow effects and digit animations.'
+        type: 'nixie-demo',
+        caption: 'Interactive demonstration: Click year buttons or use arrow keys to navigate. Watch the nixie tubes glow with authentic orange cathode effects.'
       },
       {
         type: 'subheading',
@@ -379,8 +361,7 @@ const projects = [
         content: 'The Union Jack and Shield toggles use a vintage switch design. Each switch has a brass toggle that slides in a recessed track, with embossed grip lines for visual texture. When toggled, the LED indicator above glows green (on) or stays dark (off). The switch state affects the flag render in real-time — toggle off the Union Jack and the canton disappears, revealing what a modified ensign might have looked like.'
       },
       {
-        type: 'video',
-        src: '/videos/ontario-flag/toggle-switches.mp4',
+        type: 'vintage-switch-demo',
         caption: 'Toggle the Union Jack and Shield elements on/off. LED indicators provide immediate visual feedback.'
       },
       {
@@ -410,33 +391,7 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'Each era in the time machine shows the historically accurate flag with proper proportions, correct heraldic elements, and appropriate weathering based on the selected texture mode. The contextual text updates to explain what was happening politically — why the flag changed, what it represented, and how Ontario\'s identity evolved.'
-      },
-      {
-        type: 'pullquote',
-        content: 'I spent hours studying actual flag specifications and historical photographs. The Union Jack diagonal stripes alone have specific offsets to maintain proper counterchanging when quartered.',
-        attribution: 'On Historical Research'
-      },
-      {
-        type: 'subheading',
-        content: 'SVG Flag Rendering: Scalable Heraldry'
-      },
-      {
-        type: 'text',
-        content: 'The flags are rendered entirely in SVG for crisp scaling at any resolution. This sounds simple until you try to build a Union Jack correctly — the diagonal stripes must be offset from center, the red Cross of St. Patrick sits counterchanged (different position above/below, left/right), and the proportions must be exactly 1:2. The Ontario shield adds another layer: the Cross of St. George, three maple leaves in proper arrangement, and heraldic coloring that changes based on the selected palette.'
-      },
-      {
-        type: 'flag-anatomy',
-        caption: 'Interactive diagram: Hover over flag elements to see their heraldic names, proportions, and historical significance.'
-      },
-      {
-        type: 'text',
-        content: 'The rendering system supports two texture modes: "solid" for clean, modern appearance, and "aged" which applies subtle weathering effects — SVG filters that add noise and slight color desaturation to simulate historical artifacts. Users can also cycle through color palettes, from accurate historical tones to stylized options, letting them customize the aesthetic while maintaining design accuracy.'
-      },
-      {
-        type: 'video',
-        src: '/videos/ontario-flag/texture-palette-demo.mp4',
-        caption: 'Cycle through texture modes (solid/aged) and color palettes. The flag adapts while maintaining historical accuracy.'
+        content: 'Each era shows the historically accurate flag rendered in SVG for crisp scaling at any resolution — with proper heraldic proportions, correct Union Jack counterchanging, and appropriate weathering based on the selected texture mode. Users can cycle through color palettes and toggle between "solid" and "aged" textures to simulate historical artifacts.'
       },
       {
         type: 'subheading',
@@ -451,7 +406,7 @@ const projects = [
         caption: 'Full keyboard shortcut reference. Every control is accessible without a mouse.'
       },
       {
-        type: 'list',
+        type: 'list-with-image',
         items: [
           '← → : Navigate years (±1 year)',
           'Shift + ← → : Navigate decades (±10 years)',
@@ -462,7 +417,9 @@ const projects = [
           'P : Cycle through color palettes',
           'T : Toggle texture mode (solid/aged)',
           '? : Show keyboard shortcuts help'
-        ]
+        ],
+        image: '/images/Ontario-Flag/Keyboard-Shortcuts.png',
+        imageAlt: 'Keyboard shortcuts visual reference'
       },
       {
         type: 'subheading',
@@ -473,8 +430,7 @@ const projects = [
         content: 'Any flag configuration can be downloaded as PNG or SVG. The export preserves the current year\'s flag design, selected color palette, and texture mode. Filenames are automatically generated with the year and era (e.g., "ontario-flag-1965-adoption.png") for easy organization. The PNG export uses Canvas API for rasterization at 2x resolution for retina displays; SVG exports the raw vector for infinite scaling.'
       },
       {
-        type: 'video',
-        src: '/videos/ontario-flag/export-demo.mp4',
+        type: 'export-demo',
         caption: 'Download any flag configuration as PNG (raster) or SVG (vector). Filenames include year and era automatically.'
       },
       {
@@ -531,6 +487,18 @@ const projects = [
       },
       {
         type: 'subheading',
+        content: 'Testing: Catching Bugs Where They Matter'
+      },
+      {
+        type: 'text',
+        content: 'The project includes 73 unit tests with Jest and React Testing Library, plus 5 E2E tests with Playwright. The focus is testing behavior that could actually break — era boundary transitions are critical because a bug at 1867→1868 shows the wrong flag for Confederation.'
+      },
+      {
+        type: 'test-runner-demo',
+        caption: 'Interactive demo: Click Run to simulate test execution. Tests focus on era boundaries and component interactions.'
+      },
+      {
+        type: 'subheading',
         content: 'Why This Project Matters'
       },
       {
@@ -571,6 +539,10 @@ const projects = [
       {
         title: 'Historical Data',
         description: '8 distinct eras from 1763-present. Contextual descriptions for each period. Accurate flag specifications per era.'
+      },
+      {
+        title: 'Testing',
+        description: 'Jest + React Testing Library for 73 unit/component tests. Playwright for 5 E2E tests. Focus on era boundary transitions and user interactions.'
       }
     ],
 
@@ -579,113 +551,267 @@ const projects = [
   {
     id: 3,
     // Card Preview Data
-    title: 'Flashcards Study System: Spaced Repetition with Modern UX',
-    subtitle: 'SM-2 algorithm meets thoughtful interface design',
-    name: 'Flashcards',
-    category: 'EDUCATION',
-    type: 'Study Tool',
-    year: '2024',
-    content: `Study apps often sacrifice usability for features. This flashcard system 
-      focuses on what actually matters: smooth card interactions, persistent sessions, 
-      and the proven SM-2 algorithm for optimal retention.`,
-    fullContent: `A flashcard study system implementing the SM-2 spaced repetition algorithm 
-      with pause/resume sessions, progress tracking, deck organization, and keyboard 
-      navigation. Part of veraOS but designed as a standalone experience.`,
-    pullQuote: '"The best study tool is one you actually want to use."',
-    tech: ['React', 'Tailwind CSS', 'LocalStorage', 'SM-2 Algorithm'],
+    title: 'Through the Glass: An Interactive Nordic Window Experience',
+    subtitle: 'Real-time weather, ambient sounds, and cozy cabin aesthetics',
+    name: 'Through the Glass',
+    category: 'FRONTEND · INTERACTIVE',
+    type: 'Interactive Experience',
+    year: '2025',
+    content: `What if you could look through a window into a Nordic cabin, watching real weather
+      unfold outside? This interactive experience combines Three.js weather effects, ambient
+      soundscapes, and meticulous UI design to create something genuinely cozy.`,
+    fullContent: `An immersive web experience featuring a Nordic cabin window with real-time weather
+      effects, interactive elements like curtains and lamps, ambient sound systems, and a bookshelf
+      with discoverable content. Built with Next.js 14, Three.js, and Framer Motion.`,
+    pullQuote: '"The best interfaces disappear. What remains is the experience."',
+    tech: {
+      languages: [
+        { name: 'TypeScript', percentage: 97.3 },
+        { name: 'CSS', percentage: 1.9 },
+        { name: 'JavaScript', percentage: 0.8 }
+      ],
+      frontend: ['Next.js 14', 'React 18', 'Three.js', 'Framer Motion'],
+      tools: ['Tailwind CSS', 'React Query', 'Web Audio API']
+    },
     features: [
-      'Spaced Repetition',
-      'Session Persistence',
-      'Keyboard Navigation',
-      'Progress Analytics',
-      'Deck Organization'
+      'Real-time Weather API',
+      'Three.js Weather Effects',
+      'Ambient Sound System',
+      'Interactive Curtains & Lamp',
+      'Day/Night Cycle',
+      'Discoverable Bookshelf'
     ],
     links: {
-      live: 'https://veraos.ai',
-      github: 'https://github.com/juliocalvorios/veraos'
+      live: 'https://through-the-glass.juliocalvo.dev',
+      github: 'https://github.com/juliocalvorios/through-the-glass'
     },
 
+    // Card Preview Image
+    portraitImage: '/images/Through-The-Glass-Project/Portrait-Image.png',
+
     // Full Article Data
-    date: 'November 2024',
-    readTime: '6',
-    image: '/images/flashcards-project/study-view.png',
-    imageCaption: 'The flashcard study interface with progress indicators and keyboard shortcuts.',
+    date: 'December 2025',
+    readTime: '8',
+    video: '/videos/Through-The-Glass-Project/Through-The-Glass-Video-1.mp4',
+    videoCaption: 'The Nordic cabin window with snow falling outside and warm interior lighting.',
     author: {
       name: 'Julio Calvo',
       title: 'Frontend Developer'
     },
-    duration: '6 weeks',
-    role: 'Developer & Designer',
+    duration: '3 weeks',
+    role: 'Solo Developer & Designer',
 
-    lede: `Anki is powerful but looks like it was designed in 2005. Quizlet is pretty but dumbed-down. I wanted something in between: the proven effectiveness of spaced repetition with an interface that feels modern and responds to how people actually study — in sessions that get interrupted, on devices that vary, with progress that should persist automatically.`,
+    lede: `Most "ambient" websites are static images with looping audio. I wanted something different — a window you could actually interact with. Pull the curtains open. Click the lamp. Watch snow accumulate on the glass. Hear the clock tick when you hover over it. Through the Glass is an exercise in atmospheric UI design: every element serves the mood, and the mood is cozy Nordic cabin on a winter evening.`,
 
     bodyParagraphs: [
       {
-        type: 'text',
-        content: 'The SM-2 algorithm is the foundation. Each card tracks its ease factor, interval, and repetition count. Rate a card easy and you won\'t see it for weeks. Rate it hard and it comes back tomorrow. This isn\'t new — it\'s been proven effective since the 1980s. What\'s new is making it feel good to use.'
-      },
-      {
         type: 'subheading',
-        content: 'Sessions That Survive'
+        content: 'The Nordic Window: Glass That Feels Real'
       },
       {
         type: 'text',
-        content: 'Real studying gets interrupted. Phone calls, coffee breaks, closing the laptop. The session system saves state to localStorage continuously — current card, time elapsed, cards remaining. Close the browser mid-session and pick up exactly where you left off. Pause tracking even accounts for break time separately from study time.'
-      },
-      {
-        type: 'pullquote',
-        content: 'The best study tool is one you actually want to use.',
-        attribution: 'Design Philosophy'
-      },
-      {
-        type: 'subheading',
-        content: 'Keyboard-First Design'
-      },
-      {
-        type: 'text',
-        content: 'Power users don\'t want to click. Space flips the card, 1-4 rates difficulty, arrow keys navigate. The entire study flow is possible without touching the mouse. This sounds minor until you\'re 50 cards deep and realize how much faster keyboard navigation feels.'
+        content: 'The window is the centerpiece. It\'s not just a frame around weather effects — it\'s a multi-layered glass simulation with reflections, frost patterns, and light refraction that changes based on time of day. At night, interior light creates a warm glow on the glass. During storms, rain streaks down the pane with realistic physics. The frame itself uses wood grain textures and subtle shadows to feel like actual painted Nordic trim.'
       },
       {
         type: 'list',
         items: [
-          'SM-2 algorithm with proper interval calculations',
-          'Session state persisted to localStorage',
-          'Pause/resume with separate time tracking',
-          'Full keyboard navigation for study flow',
-          'Deck organization with color coding',
-          'Progress analytics per deck and overall'
+          'Multi-layer glass with reflections and refraction effects',
+          'Dynamic frost patterns using SVG noise filters',
+          'Rain streaks with gravity-based animation',
+          'Interior light reflection on glass at night',
+          'Wood frame with grain texture and realistic shadows',
+          'Responsive sizing that maintains proportions'
         ]
       },
       {
+        type: 'window-demo',
+        caption: 'Select weather conditions and toggle day/night to see the window respond in real-time.'
+      },
+      {
         type: 'subheading',
-        content: 'Visual Feedback'
+        content: 'Three.js Weather: Snow, Rain, and Aurora'
       },
       {
         type: 'text',
-        content: 'Cards flip with a satisfying animation. Progress bars fill smoothly. Completion triggers a subtle celebration. These microinteractions don\'t affect learning outcomes directly, but they affect whether someone opens the app tomorrow. Motivation matters as much as algorithm.'
+        content: 'Each weather type is a full Three.js scene rendered inside the window frame. Snow uses thousands of particles with wind simulation — flakes drift, swirl, and accumulate at different rates based on intensity. Rain implements realistic droplet physics with splash effects. The aurora borealis uses vertex shaders to create flowing, color-shifting curtains of light that respond to a simplex noise function.'
+      },
+      {
+        type: 'text',
+        content: 'Performance was critical. Running Three.js weather effects alongside Framer Motion animations and real-time audio could easily tank frame rates. The solution: weather particles use instanced rendering, effects outside the viewport are culled, and intensity scales dynamically based on device capability. On mobile, particle counts drop 60% while maintaining visual quality.'
+      },
+      {
+        type: 'video',
+        src: '/videos/Through-The-Glass-Project/rain-snow-aurora.mp4',
+        caption: 'Cycling through weather conditions: clear skies, clouds, rain, snow, storm, fog, and aurora borealis.'
+      },
+      {
+        type: 'pullquote',
+        content: 'Weather isn\'t just visual. It\'s the sound of rain on glass, the muffled quiet of snow, the distant rumble of thunder.',
+        attribution: 'Design Philosophy'
+      },
+      {
+        type: 'subheading',
+        content: 'Sounds and Interactive Elements'
+      },
+      {
+        type: 'text',
+        content: 'Every weather condition has its own soundscape. Rain brings gentle patter. Storms add thunder that syncs with lightning flashes. Snow creates a muffled quiet. But the sound system goes deeper: there\'s a subtle piano melody in the background, interaction sounds for curtains and switches, and a clock that only ticks when you hover over it. Each sound uses the Web Audio API with proper fade-ins to prevent jarring transitions.'
+      },
+      {
+        type: 'text',
+        content: 'The curtains use Framer Motion with custom spring physics — they don\'t just slide, they drape and settle naturally. The hanging lamp toggles between day and night modes with a satisfying click sound and light projection that illuminates the cabin wall. The wall switch panel controls both lighting and curtains, styled like vintage cabin hardware with wood texture and brass accents.'
+      },
+      {
+        type: 'text',
+        content: 'These interactions aren\'t just functional — they\'re discoverable. Nothing is labeled. Users figure out they can click the lamp by curiosity. The clock tick surprises them on first hover. This approach rewards exploration and makes the experience feel more like a real space than an interface.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Weather-based ambient soundscapes (rain, wind, thunder)',
+          'Background piano at 8% volume for warmth',
+          'Interaction sounds: curtain fabric, lamp click, light switch',
+          'Clock ticks only on hover — a discoverable detail',
+          'Curtains with Framer Motion spring physics',
+          'Wall switch panel with wood texture and brass accents',
+          'Master volume control with smooth fades'
+        ]
+      },
+      {
+        type: 'video',
+        src: '/videos/Through-The-Glass-Project/Sounds.mp4',
+        caption: 'Sounds and interactions in action: curtains opening, lamp clicking, weather changes, and ambient soundscapes.'
+      },
+      {
+        type: 'subheading',
+        content: 'The Bookshelf: Hidden Content Discovery'
+      },
+      {
+        type: 'text',
+        content: 'On the left side of the cabin sits a small bookshelf with interactive books. Hover over a book and it tilts, revealing a spine label. Click and the book opens to show content: the tech stack used to build the project, information about the developer, and a haiku about the experience itself. The books have realistic hover sounds and the open animation feels like actually handling a physical object.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Three interactive books with unique content',
+          'Hover-triggered tilt animation with sound',
+          'Click to open with page-flip animation',
+          'Tech Stack book lists Next.js, React, Three.js, Framer Motion',
+          'About book with developer information',
+          'Poetry book with a haiku about the experience'
+        ]
+      },
+      {
+        type: 'video',
+        src: '/videos/Through-The-Glass-Project/books.mp4',
+        caption: 'The bookshelf in action: hovering tilts books, clicking opens them to reveal hidden content.'
+      },
+      {
+        type: 'pullquote',
+        content: 'The best details are the ones users discover themselves. A clock that ticks on hover. Books that actually open. Weather that matches your location.',
+        attribution: 'On Discoverable Design'
+      },
+      {
+        type: 'subheading',
+        content: 'Real Weather Integration'
+      },
+      {
+        type: 'text',
+        content: 'The experience defaults to the user\'s actual weather. Using the browser\'s geolocation API and a weather service, the window shows what\'s happening outside your real window — if it\'s snowing where you are, it\'s snowing in the cabin. Users can override this with the weather selector to explore all conditions, but the default personalization makes the experience feel surprisingly intimate.'
+      },
+      {
+        type: 'text',
+        content: 'Time of day also syncs with reality. Visit at night and the cabin is lit by lamplight with stars visible through the window. Morning brings soft dawn colors. The combination of real weather and real time means no two visits are exactly alike.'
+      },
+      {
+        type: 'subheading',
+        content: 'Technical Architecture'
+      },
+      {
+        type: 'text',
+        content: 'The project uses Next.js 14 with the App Router for its component architecture and server-side capabilities. Three.js handles all weather particle systems with custom shaders for aurora effects. Framer Motion powers every animation from curtain physics to book tilts. React Query manages weather API data with proper caching. The sound system uses two custom hooks: useAmbientSound for weather-based loops and useInteractionSounds for one-shot effects.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Next.js 14 with App Router and TypeScript',
+          'Three.js for weather particle systems (snow, rain, fog)',
+          'Custom GLSL shaders for aurora borealis effect',
+          'Framer Motion for all UI animations and transitions',
+          'React Query for weather API data fetching',
+          'Web Audio API with custom fade/crossfade logic',
+          'Tailwind CSS for styling with custom design tokens',
+          'SVG filters for glass frost and wood grain textures'
+        ]
+      },
+      {
+        type: 'tech-stack',
+        caption: 'Architecture diagram: weather data flows through React Query, Three.js renders effects, Framer Motion handles UI state.'
+      },
+      {
+        type: 'subheading',
+        content: 'The Cabin Aesthetic'
+      },
+      {
+        type: 'text',
+        content: 'Every visual element reinforces the Nordic cabin atmosphere. The wall uses horizontal plank textures with SVG-based wood grain. Colors shift from warm red-brown during day to deep burgundy at night. The weather selector, wall switch, and clock all use the same material language: wood, brass, and warm metals. Even the loading state uses a spinner that matches the cabin\'s color palette.'
+      },
+      {
+        type: 'text',
+        content: 'Night mode adds subtle flickering light effects simulating a fireplace just out of frame. The lamp casts a realistic cone of light onto the wall. Stars outside the window twinkle at randomized intervals. These details don\'t demand attention — they create atmosphere subconsciously.'
+      },
+      {
+        type: 'image',
+        src: '/images/Through-The-Glass-Project/Winter-Cabin.png',
+        caption: 'The cabin aesthetic: warm wood tones, brass accents, and cozy Nordic atmosphere.'
+      },
+      {
+        type: 'subheading',
+        content: 'Why This Project Matters'
+      },
+      {
+        type: 'text',
+        content: 'Through the Glass demonstrates that frontend development can be art. Not every project needs to be a dashboard or an e-commerce site. Sometimes the goal is simply to create an experience that makes someone pause, exhale, and feel something. The technical challenges — Three.js performance, audio synchronization, animation physics — serve an emotional purpose rather than a business one.'
+      },
+      {
+        type: 'text',
+        content: 'This project also showcases attention to detail at scale. Dozens of small decisions compound into overall quality: the exact timing of sound fade-ins, the spring constants for curtain draping, the hex values for Nordic cabin wood. None of these details are visible in a feature list, but users feel them. That\'s what separates a project from a product.'
+      },
+      {
+        type: 'pullquote',
+        content: 'Frontend development at its best is invisible. Users don\'t see the Three.js shaders or Framer Motion springs. They just feel cozy.',
+        attribution: 'Final Reflection'
       }
     ],
 
     technicalDetails: [
       {
-        title: 'SM-2 Implementation',
-        description: 'Full SuperMemo 2 algorithm with ease factors, intervals, and repetition tracking per card.'
+        title: 'Framework',
+        description: 'Next.js 14 with App Router and TypeScript. Tailwind CSS with custom design tokens for the cabin color palette.'
       },
       {
-        title: 'Session Persistence',
-        description: 'Continuous state saves to localStorage. Survives browser close, tracks paused time separately.'
+        title: 'Weather Rendering',
+        description: 'Three.js particle systems for snow, rain, and fog. Custom GLSL vertex shaders for aurora borealis. Instanced rendering for performance.'
       },
       {
-        title: 'Keyboard Navigation',
-        description: 'Complete study flow via keyboard. Space to flip, number keys for rating, arrows for navigation.'
+        title: 'Animation System',
+        description: 'Framer Motion with custom spring physics for curtains. AnimatePresence for weather transitions. SVG animations for clock hands.'
       },
       {
-        title: 'State Management',
-        description: 'React context for deck and card state. Optimistic updates with proper error handling.'
+        title: 'Audio Engine',
+        description: 'Web Audio API with two custom hooks. Crossfade logic for weather transitions. Interaction sounds with startTime offsets for instant playback.'
+      },
+      {
+        title: 'Weather Integration',
+        description: 'Geolocation API for user location. Weather API with React Query caching. Automatic time-of-day detection.'
+      },
+      {
+        title: 'Visual Polish',
+        description: 'SVG noise filters for frost and wood grain. Multi-layer glass reflections. Dynamic lighting based on time and weather.'
       }
     ],
 
-    conclusion: 'Effective learning tools need two things: proven methodology and pleasant experience. The SM-2 algorithm provides the methodology. Thoughtful interface design provides the experience. Together, they create a study tool that people actually use consistently — which is the only kind that works.'
+    conclusion: 'Through the Glass proves that the web can be a medium for atmosphere, not just information. Every technical decision — Three.js particle counts, Framer Motion spring tensions, Web Audio fade curves — serves the goal of making someone feel like they\'re looking through a real window into a cozy Nordic cabin. That\'s frontend development as craft: invisible technology creating visible emotion.'
   },
   {
     id: 4,
@@ -798,6 +924,481 @@ const projects = [
     ],
 
     conclusion: 'AI chat interfaces have room to grow. Most still feel like demos — functional but not refined. This interface demonstrates what\'s possible when you treat the chat experience as a product worth polishing. Streaming that feels natural, markdown that renders correctly, and dozens of small details that add up to something that feels professional.'
+  },
+  {
+    id: 5,
+    // Card Preview Data
+    title: 'Ontario Flag Time Machine: TypeScript State Machines and SVG Heraldry',
+    subtitle: 'Decoupled visual/data state for 60fps interactions, branded types for compile-time safety, and historically accurate vector rendering',
+    name: 'Flag Time Machine (Technical)',
+    category: 'TYPESCRIPT · NEXT.JS · SVG',
+    type: 'Interactive Application',
+    year: '2025',
+    content: `Three technical problems: implementing drag interactions with decoupled visual 
+      and data state for 60fps performance, building a type-safe state machine for 8 historical 
+      eras, and rendering SVG flags with correct heraldic geometry. The vintage aesthetic came 
+      after the architecture was solid.`,
+    fullContent: `A Next.js 14 application with strict TypeScript demonstrating advanced state 
+      management patterns, custom hooks with proper dependency arrays, Canvas/SVG export pipelines, 
+      and comprehensive keyboard navigation. Renders historically accurate flags using pure SVG 
+      with correct Union Jack counterchanging geometry.`,
+    pullQuote: '"Separating visual state from data state turned a janky interaction into 60fps smoothness."',
+    tech: {
+      languages: [
+        { name: 'TypeScript', percentage: 85 },
+        { name: 'CSS', percentage: 15 }
+      ],
+      frontend: ['Next.js 14', 'React 18', 'Tailwind CSS'],
+      tools: ['SVG Rendering', 'Canvas API', 'Custom Hooks', 'Jest + RTL', 'Playwright']
+    },
+    features: [
+      'Decoupled Visual/Data State',
+      'Branded TypeScript Types',
+      'Exhaustive Era Matching',
+      'Full Keyboard Navigation',
+      'Canvas/SVG Export Pipeline',
+      'Comprehensive Test Coverage'
+    ],
+    links: {
+      live: 'https://ontario-flag.juliocalvo.dev',
+      github: 'https://github.com/juliocalvorios/ontario-flag-time-machine'
+    },
+
+    // Full Article Data
+    date: 'December 2025',
+    readTime: '8',
+    image: '/images/ontario-flag-project/time-machine-hero.png',
+    imageCaption: 'The Ontario Flag Time Machine: TypeScript strict mode, Next.js 14, zero runtime dependencies.',
+    author: {
+      name: 'Julio Calvo',
+      title: 'Frontend Developer'
+    },
+    duration: '2 weeks',
+    role: 'Solo Developer',
+
+    lede: `This project solved three technical problems that don't have obvious solutions. First: how do you implement a drag interaction where the visual feedback runs at 60fps but the data updates only at meaningful thresholds? Second: how do you model 8 distinct historical eras in TypeScript so invalid states are impossible at compile time? Third: how do you render a Union Jack correctly in SVG when most implementations get the diagonal stripe geometry wrong? The vintage control panel aesthetic came after I had the architecture working.`,
+
+    bodyParagraphs: [
+      {
+        type: 'subheading',
+        content: 'The Core Problem: Visual State vs Data State'
+      },
+      {
+        type: 'text',
+        content: 'The year lever needs to feel smooth when dragging — position updates on every mouse move. But the flag shouldn\'t re-render 60 times per second. The naive implementation couples these: lever moves, year updates, flag re-renders. Result: janky interaction. The solution is state decoupling: lever position is visual state (updates constantly), year is data state (updates at thresholds). React state handles both, but they change independently.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `// Two separate states with different update frequencies
+const [leverPosition, setLeverPosition] = useState(0)  // Updates every frame
+const [year, setYear] = useState<Year>(1763 as Year)   // Updates at era boundaries
+
+const handleDrag = useCallback((clientX: number) => {
+  const trackRect = trackRef.current?.getBoundingClientRect()
+  if (!trackRect) return
+  
+  // Visual: updates immediately for smooth 60fps feedback
+  const newPosition = clamp(
+    (clientX - trackRect.left) / trackRect.width,
+    0,
+    1
+  )
+  setLeverPosition(newPosition)
+  
+  // Data: only updates when crossing era boundaries
+  const newYear = positionToYear(newPosition)
+  if (getEra(newYear) !== getEra(year)) {
+    setYear(newYear)
+  }
+}, [year])  // Dependency array includes year for era comparison`
+      },
+      {
+        type: 'text',
+        content: 'The useCallback dependency array is critical here. Including `year` means the callback recreates when era changes, ensuring the comparison uses current data. Missing this creates stale closure bugs that are painful to debug.'
+      },
+      {
+        type: 'subheading',
+        content: 'Branded Types: Invalid Years Are Compile Errors'
+      },
+      {
+        type: 'text',
+        content: 'A year must be between 1763 and 2025. With a plain `number` type, nothing prevents passing 9999 or -50. Branded types add a compile-time tag that makes invalid values impossible to construct except through a validation function. It\'s a pattern from functional programming that TypeScript supports elegantly.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `// Branded type: a number that's been validated as a year
+type Year = number & { readonly __brand: unique symbol }
+
+// The only way to create a Year — validates at runtime, types at compile time
+function createYear(n: number): Year {
+  if (n < 1763 || n > 2025) {
+    throw new RangeError(\`Year must be 1763-2025, received \${n}\`)
+  }
+  return n as Year
+}
+
+// Now this is a type error, not a runtime surprise:
+// const badYear: Year = 9999  // Error: Type 'number' is not assignable to 'Year'
+
+// This works:
+const goodYear = createYear(1867)  // Type: Year`
+      },
+      {
+        type: 'text',
+        content: 'The benefit isn\'t just catching bugs — it\'s documentation. When a function accepts `Year`, you know it\'s already validated. No defensive coding at every boundary. The type system carries the proof.'
+      },
+      {
+        type: 'subheading',
+        content: 'Exhaustive Era Matching'
+      },
+      {
+        type: 'text',
+        content: 'Eight historical eras, each with different flag configurations. A switch statement could handle this, but adding a ninth era later wouldn\'t cause a type error — the code would silently fall through. TypeScript\'s exhaustiveness checking prevents this: if you miss a case, it won\'t compile.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `type Era = 
+  | 'british-colonial'    // 1763-1791
+  | 'upper-canada'        // 1791-1867
+  | 'confederation'       // 1867
+  | 'first-ensign'        // 1868-1921
+  | 'updated-ensign'      // 1922-1956
+  | 'final-ensign'        // 1957-1964
+  | 'adoption'            // 1965
+  | 'current'             // 1965-present
+
+function getEra(year: Year): Era {
+  if (year < 1791) return 'british-colonial'
+  if (year < 1867) return 'upper-canada'
+  if (year === 1867) return 'confederation'
+  if (year < 1922) return 'first-ensign'
+  if (year < 1957) return 'updated-ensign'
+  if (year < 1965) return 'final-ensign'
+  if (year === 1965) return 'adoption'
+  return 'current'
+}
+
+// Exhaustiveness helper — if this compiles, you covered all cases
+function getFlagConfig(era: Era): FlagConfig {
+  switch (era) {
+    case 'british-colonial': return { base: 'union-jack', shield: false }
+    case 'upper-canada': return { base: 'union-jack', shield: false }
+    case 'confederation': return { base: 'red-ensign', shield: 'canada-1867' }
+    case 'first-ensign': return { base: 'red-ensign', shield: 'canada-1868' }
+    case 'updated-ensign': return { base: 'red-ensign', shield: 'canada-1922' }
+    case 'final-ensign': return { base: 'red-ensign', shield: 'canada-1957' }
+    case 'adoption': return { base: 'ontario', shield: 'ontario' }
+    case 'current': return { base: 'ontario', shield: 'ontario' }
+    // No default — TypeScript errors if we miss a case
+  }
+}`
+      },
+      {
+        type: 'subheading',
+        content: 'SVG Heraldry: Getting the Union Jack Right'
+      },
+      {
+        type: 'text',
+        content: 'Most Union Jack implementations on the web are wrong. The red diagonal stripes (St. Patrick\'s Cross) are not centered — they\'re offset from the white diagonals (St. Andrew\'s Cross) in a pattern called counterchanging. This offset is specified in the official flag protocol. Getting it wrong is visually subtle but historically incorrect.'
+      },
+      {
+        type: 'code',
+        language: 'tsx',
+        content: `// Union Jack with correct counterchanging
+const UnionJack: FC<{ width: number; height: number }> = ({ width, height }) => {
+  const w = width
+  const h = height
+  
+  return (
+    <svg viewBox={\`0 0 \${w} \${h}\`} xmlns="http://www.w3.org/2000/svg">
+      {/* Blue field */}
+      <rect width={w} height={h} fill="#012169" />
+      
+      {/* St Andrew's Cross (white diagonal) */}
+      <path 
+        d={\`M0,0 L\${w},\${h} M\${w},0 L0,\${h}\`} 
+        stroke="#FFFFFF" 
+        strokeWidth={h * 0.1} 
+      />
+      
+      {/* St Patrick's Cross (red diagonal) — OFFSET for counterchanging */}
+      {/* Upper-left to center: shifted RIGHT */}
+      <path 
+        d={\`M0,0 L\${w/2},\${h/2}\`} 
+        stroke="#C8102E" 
+        strokeWidth={h * 0.067}
+        transform={\`translate(\${w * 0.017}, 0)\`}  // Key offset
+      />
+      {/* Center to lower-right: shifted RIGHT */}
+      <path 
+        d={\`M\${w/2},\${h/2} L\${w},\${h}\`} 
+        stroke="#C8102E" 
+        strokeWidth={h * 0.067}
+        transform={\`translate(\${w * 0.017}, 0)\`}
+      />
+      {/* Upper-right to center: shifted LEFT */}
+      <path 
+        d={\`M\${w},0 L\${w/2},\${h/2}\`} 
+        stroke="#C8102E" 
+        strokeWidth={h * 0.067}
+        transform={\`translate(-\${w * 0.017}, 0)\`}  // Opposite offset
+      />
+      {/* Center to lower-left: shifted LEFT */}
+      <path 
+        d={\`M\${w/2},\${h/2} L0,\${h}\`} 
+        stroke="#C8102E" 
+        strokeWidth={h * 0.067}
+        transform={\`translate(-\${w * 0.017}, 0)\`}
+      />
+      
+      {/* St George's Cross (red vertical/horizontal) */}
+      <rect x={(w - w*0.2)/2} y={0} width={w*0.2} height={h} fill="#FFFFFF" />
+      <rect x={0} y={(h - h*0.2)/2} width={w} height={h*0.2} fill="#FFFFFF" />
+      <rect x={(w - w*0.12)/2} y={0} width={w*0.12} height={h} fill="#C8102E" />
+      <rect x={0} y={(h - h*0.12)/2} width={w} height={h*0.12} fill="#C8102E" />
+    </svg>
+  )
+}`
+      },
+      {
+        type: 'text',
+        content: 'The translate transforms are the key. Without them, the red diagonals sit perfectly centered on the white — visually acceptable but heraldically wrong. The 1.7% offset matches the official specification.'
+      },
+      {
+        type: 'subheading',
+        content: 'Keyboard Navigation: Full Event Handling'
+      },
+      {
+        type: 'text',
+        content: 'Every control accessible via keyboard. The challenge is handling modifier keys (Shift for decade jumps) and preventing default browser behavior without blocking legitimate shortcuts. The implementation uses a handler map pattern that\'s easy to extend.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `const useKeyboardNavigation = (
+  year: Year,
+  setYear: (y: Year) => void,
+  toggles: { unionJack: () => void; shield: () => void; palette: () => void; texture: () => void }
+) => {
+  useEffect(() => {
+    const handlers: Record<string, (e: KeyboardEvent) => void> = {
+      'ArrowLeft': () => setYear(createYear(Math.max(1763, year - 1))),
+      'ArrowRight': () => setYear(createYear(Math.min(2025, year + 1))),
+      'Shift+ArrowLeft': () => setYear(createYear(Math.max(1763, year - 10))),
+      'Shift+ArrowRight': () => setYear(createYear(Math.min(2025, year + 10))),
+      'ArrowUp': () => setYear(getPreviousEraStart(year)),
+      'ArrowDown': () => setYear(getNextEraStart(year)),
+      'Home': () => setYear(createYear(1763)),
+      'End': () => setYear(createYear(2025)),
+      'u': toggles.unionJack,
+      's': toggles.shield,
+      'p': toggles.palette,
+      't': toggles.texture,
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Build key string including modifiers
+      const key = \`\${e.shiftKey ? 'Shift+' : ''}\${e.key}\`
+      
+      if (handlers[key]) {
+        e.preventDefault()  // Prevent browser defaults
+        handlers[key](e)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [year, setYear, toggles])  // All dependencies explicit
+}`
+      },
+      {
+        type: 'subheading',
+        content: 'Export Pipeline: Canvas and SVG'
+      },
+      {
+        type: 'text',
+        content: 'Two export formats with different pipelines. SVG exports the raw vector — straightforward. PNG requires rasterization through Canvas API at 2x resolution for retina displays. Both generate filenames automatically with metadata.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `async function exportFlag(
+  config: FlagConfig, 
+  format: 'svg' | 'png',
+  year: Year,
+  era: Era
+): Promise<void> {
+  const filename = \`ontario-flag-\${year}-\${era}.\${format}\`
+  
+  if (format === 'svg') {
+    // SVG: serialize the DOM node
+    const svgElement = document.getElementById('flag-svg')
+    if (!svgElement) return
+    
+    const serializer = new XMLSerializer()
+    const svgString = serializer.serializeToString(svgElement)
+    const blob = new Blob([svgString], { type: 'image/svg+xml' })
+    downloadBlob(blob, filename)
+    
+  } else {
+    // PNG: rasterize through Canvas at 2x for retina
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    
+    const scale = 2
+    canvas.width = 1200 * scale
+    canvas.height = 600 * scale
+    ctx.scale(scale, scale)
+    
+    const svgData = new XMLSerializer().serializeToString(svgElement)
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' })
+    const url = URL.createObjectURL(svgBlob)
+    
+    const img = new Image()
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0, 1200, 600)
+      URL.revokeObjectURL(url)
+      canvas.toBlob((blob) => {
+        if (blob) downloadBlob(blob, filename)
+      }, 'image/png')
+    }
+    img.src = url
+  }
+}`
+      },
+      {
+        type: 'subheading',
+        content: 'Testing Strategy: What Matters and Why'
+      },
+      {
+        type: 'text',
+        content: 'The testing approach focuses on behavior that could actually break: era boundary transitions, type validation, and user interactions. 73 unit tests with Jest and React Testing Library, plus 5 E2E tests with Playwright. The goal isn\'t coverage metrics — it\'s catching bugs where they\'re most likely to occur.'
+      },
+      {
+        type: 'text',
+        content: 'Era boundaries are the most critical logic. A bug here shows the wrong flag for a year — historically incorrect and embarrassing. The tests verify every transition point: 1790→1791 (Upper Canada), 1866→1867 (Confederation), 1964→1965 (Ontario flag adoption). These aren\'t arbitrary dates; they\'re where the logic branches.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `// Testing boundary years where bugs are most likely
+describe('getFlagForYear - boundary transitions', () => {
+  it('should handle 1867 → 1868 transition correctly', () => {
+    // 1867: Confederation year - still Union Jack
+    const before = getFlagForYear(toYear(1867))
+    expect(before.src).toBe('/flags/union-jack.svg')
+
+    // 1868: First Red Ensign begins
+    const after = getFlagForYear(toYear(1868))
+    expect(after.src).toBe('/flags/canada-1868-1921.svg')
+  })
+
+  it('should handle 1964 → 1965 transition correctly', () => {
+    // Last year of Red Ensign → Ontario flag adoption
+    const before = getFlagForYear(toYear(1964))
+    const after = getFlagForYear(toYear(1965))
+
+    expect(before.src).toContain('canada')
+    expect(after.src).toBe('/flags/ontario.svg')
+  })
+})`
+      },
+      {
+        type: 'text',
+        content: 'Component tests verify interactions work without testing implementation details. Does clicking a switch call the toggle function? Does the disabled state prevent clicks? These tests use React Testing Library\'s philosophy: test behavior users care about, not internal state.'
+      },
+      {
+        type: 'code',
+        language: 'typescript',
+        content: `describe('VintageSwitch interactions', () => {
+  it('should call onToggle when clicked', () => {
+    const onToggle = jest.fn()
+    const { container } = render(
+      <VintageSwitch label="Test" isOn={false} onToggle={onToggle} />
+    )
+
+    fireEvent.click(container.querySelector('.cursor-pointer'))
+    expect(onToggle).toHaveBeenCalledWith(true)
+  })
+
+  it('should NOT call onToggle when disabled', () => {
+    const onToggle = jest.fn()
+    render(<VintageSwitch label="Test" isOn={false} onToggle={onToggle} disabled />)
+
+    fireEvent.click(container.querySelector('.opacity-50'))
+    expect(onToggle).not.toHaveBeenCalled()
+  })
+})`
+      },
+      {
+        type: 'text',
+        content: 'E2E tests with Playwright verify the full experience works in a real browser. These catch integration issues that unit tests miss: does the page actually load? Do keyboard shortcuts work after React hydration? Is the app responsive on mobile? Five tests covering the critical paths.'
+      },
+      {
+        type: 'subheading',
+        content: 'Technical Decisions'
+      },
+      {
+        type: 'text',
+        content: 'No external state management — React hooks are sufficient for this scale. No animation library — CSS transitions with cubic-bezier timing handle everything. No component library — custom components match the specific aesthetic. The only dependencies beyond Next.js are devDependencies for TypeScript and testing.'
+      },
+      {
+        type: 'list',
+        items: [
+          'Next.js 14 with App Router — file-based routing, server components where applicable',
+          'TypeScript strict mode — noImplicitAny, strictNullChecks, no escape hatches',
+          'Zero runtime UI dependencies — React, Next.js, nothing else',
+          'Tailwind CSS with CSS custom properties — single source of truth for palette',
+          'Jest + React Testing Library + Playwright — unit, component, and E2E tests',
+          'SVG-first rendering — scales to any resolution without artifacts'
+        ]
+      },
+      {
+        type: 'subheading',
+        content: 'What I Learned'
+      },
+      {
+        type: 'text',
+        content: 'State decoupling is a pattern I\'ll use again. The visual/data separation solved a real performance problem with minimal complexity. Branded types are worth the setup cost — compile-time safety paid off immediately when refactoring era logic. SVG geometry requires reading specifications, not Stack Overflow — the Union Jack counterchanging was documented but not in any tutorial.'
+      },
+      {
+        type: 'text',
+        content: 'The vintage aesthetic works, but it\'s not the focus here. The code underneath is what makes it run at 60fps, prevents invalid states, and renders historically correct flags. The craft is in the engineering as much as the design.'
+      }
+    ],
+
+    technicalDetails: [
+      {
+        title: 'State Architecture',
+        description: 'Decoupled visual/data state pattern. Lever position updates at 60fps, year updates at era thresholds. useCallback with proper dependency arrays.'
+      },
+      {
+        title: 'Type Safety',
+        description: 'Branded Year type prevents invalid values at compile time. Exhaustive Era union with no default case. TypeScript strict mode throughout.'
+      },
+      {
+        title: 'SVG Rendering',
+        description: 'Correct Union Jack counterchanging geometry. Pure functional components. Memoized to prevent re-renders during drag.'
+      },
+      {
+        title: 'Keyboard Navigation',
+        description: 'Handler map pattern for easy extension. Modifier key support (Shift+Arrow). Proper event prevention without blocking browser shortcuts.'
+      },
+      {
+        title: 'Export Pipeline',
+        description: 'Canvas API for PNG at 2x resolution. XMLSerializer for SVG. Auto-generated filenames with year and era metadata.'
+      },
+      {
+        title: 'Testing',
+        description: 'Jest + React Testing Library for 73 unit/component tests. Playwright for 5 E2E tests. Focus on boundary transitions and user interactions.'
+      }
+    ],
+
+    conclusion: 'This project demonstrates that frontend engineering is more than component composition. State decoupling, type safety, correct geometric rendering, comprehensive keyboard support, and proper testing — these are the skills that separate junior work from production-ready code. The vintage aesthetic is a design choice; the architecture underneath is engineering discipline.'
   }
 ]
 

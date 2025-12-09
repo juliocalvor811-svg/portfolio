@@ -7,6 +7,12 @@ import AcademicFlowTabs from './ui/AcademicFlowTabs'
 import VeraTechStackDiagram from './ui/VeraTechStackDiagram'
 import WidgetShowcase from './ui/WidgetShowcase'
 import TechStackBar from './ui/TechStackBar'
+import VintageSwitchDemo from './showcases/VintageSwitchDemo'
+import NixieTubeDemo from './showcases/NixieTubeDemo'
+import YearLeverDemo from './showcases/YearLeverDemo'
+import ExportDemo from './showcases/ExportDemo'
+import WindowDemo from './showcases/WindowDemo'
+import TestRunnerDemo from './showcases/TestRunnerDemo'
 
 // Video Player Component with lazy loading and viewport-aware playback
 function VideoPlayer({ src }) {
@@ -87,7 +93,6 @@ function VideoPlayer({ src }) {
           className="w-full h-auto bg-neutral-100 -mt-[0.5%]"
           style={{ marginBottom: '-0.5%' }}
           loop
-          muted
           playsInline
         />
       ) : (
@@ -164,9 +169,11 @@ function ProjectArticleFull({ projectId, onClose }) {
         {/* Enhanced Byline - NYT 2023 style */}
         <div className="pb-4 sm:pb-6 md:pb-8 border-b border-neutral-200">
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-neutral-200 flex items-center justify-center font-bold text-neutral-600 text-sm sm:text-base">
-              JC
-            </div>
+            <img
+              src="/images/photo-profile-juliocalvo.JPG"
+              alt="Julio Calvo"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+            />
             <div>
               <p className="font-semibold text-xs sm:text-sm">By Julio Calvo</p>
               <p className="text-[10px] sm:text-xs text-neutral-500">Reporting from Toronto</p>
@@ -180,10 +187,12 @@ function ProjectArticleFull({ projectId, onClose }) {
         </div>
       </div>
 
-      {/* Hero Image */}
+      {/* Hero Image or Video */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mb-6 sm:mb-8 md:mb-12">
         <div className="relative border border-neutral-200 overflow-hidden">
-          {project.image ? (
+          {project.video ? (
+            <VideoPlayer src={project.video} />
+          ) : project.image ? (
             <img
               src={project.image}
               alt={project.name}
@@ -204,7 +213,7 @@ function ProjectArticleFull({ projectId, onClose }) {
           )}
         </div>
         <p className="text-[10px] sm:text-xs text-neutral-500 mt-1.5 sm:mt-2 text-center sm:text-left">
-          {project.imageCaption}
+          {project.videoCaption || project.imageCaption}
         </p>
       </div>
 
@@ -256,11 +265,11 @@ function ProjectArticleFull({ projectId, onClose }) {
                       <img
                         src={paragraph.src}
                         alt={paragraph.caption || ''}
-                        className="w-full h-auto border border-neutral-200"
+                        className="w-full h-auto rounded-lg border border-neutral-200"
                         loading="lazy"
                       />
                     ) : (
-                      <div className="aspect-video bg-neutral-100 border border-neutral-200 flex items-center justify-center">
+                      <div className="aspect-video bg-neutral-100 border border-neutral-200 rounded-lg flex items-center justify-center">
                         <span className="text-3xl sm:text-4xl text-neutral-300 font-serif">
                           {paragraph.placeholder || 'IMAGE'}
                         </span>
@@ -303,6 +312,33 @@ function ProjectArticleFull({ projectId, onClose }) {
                   </ul>
                 )}
 
+                {paragraph.type === 'list-with-image' && (
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-8 my-6 sm:my-8">
+                    {/* List */}
+                    <ul className="space-y-1.5 sm:space-y-2 flex-1">
+                      {paragraph.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base md:text-lg font-serif text-neutral-700">
+                          <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 bg-neutral-400 rotate-45 mt-2 sm:mt-3 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                    {/* Vertical Divider */}
+                    <div className="hidden md:block w-px bg-neutral-200" />
+                    {/* Horizontal Divider for mobile */}
+                    <div className="block md:hidden h-px bg-neutral-200" />
+                    {/* Image */}
+                    <div className="flex-1">
+                      <img
+                        src={paragraph.image}
+                        alt={paragraph.imageAlt || ''}
+                        className="w-full h-auto rounded-lg border border-neutral-200"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                )}
+
                 {paragraph.type === 'highlight-showcase' && (
                   <figure className="my-8 sm:my-10 md:my-12">
                     <HighlightShowcaseTabs />
@@ -339,10 +375,76 @@ function ProjectArticleFull({ projectId, onClose }) {
                 )}
 
                 {paragraph.type === 'widget-showcase' && (
-                  <WidgetShowcase 
-                    title={paragraph.title} 
-                    widgets={paragraph.widgets} 
+                  <WidgetShowcase
+                    title={paragraph.title}
+                    widgets={paragraph.widgets}
                   />
+                )}
+
+                {paragraph.type === 'vintage-switch-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <VintageSwitchDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
+                {paragraph.type === 'nixie-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <NixieTubeDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
+                {paragraph.type === 'year-lever-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <YearLeverDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
+                {paragraph.type === 'export-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <ExportDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
+                {paragraph.type === 'window-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <WindowDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                )}
+
+                {paragraph.type === 'test-runner-demo' && (
+                  <figure className="my-8 sm:my-10 md:my-12">
+                    <TestRunnerDemo />
+                    {paragraph.caption && (
+                      <figcaption className="text-[10px] sm:text-xs md:text-sm text-neutral-500 mt-2 text-center">
+                        {paragraph.caption}
+                      </figcaption>
+                    )}
+                  </figure>
                 )}
 
               </div>
