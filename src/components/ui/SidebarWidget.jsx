@@ -22,9 +22,27 @@ function SidebarWidget({ projects, onProjectClick, playClick, playHover }) {
   const [error, setError] = useState(false)
   const [currentTime, setCurrentTime] = useState(new Date())
 
-  // Fetch GitHub commits from multiple repos
+  // Fetch GitHub commits from multiple repos (with localStorage cache)
   useEffect(() => {
+    const CACHE_KEY = 'github_commits_cache'
+    const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
+
     const fetchCommits = async () => {
+      // Check cache first
+      try {
+        const cached = localStorage.getItem(CACHE_KEY)
+        if (cached) {
+          const { data, timestamp } = JSON.parse(cached)
+          if (Date.now() - timestamp < CACHE_DURATION) {
+            setCommits(data.map(c => ({ ...c, date: new Date(c.date) })))
+            setLoading(false)
+            return
+          }
+        }
+      } catch (e) {
+        // Cache read failed, continue to fetch
+      }
+
       try {
         // Fetch commits from each repo in parallel
         const commitPromises = REPOS.map(async (repo) => {
@@ -53,6 +71,16 @@ function SidebarWidget({ projects, onProjectClick, playClick, playHover }) {
           .sort((a, b) => b.date - a.date)
           .slice(0, 3)
 
+        // Save to cache
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            data: sortedCommits,
+            timestamp: Date.now()
+          }))
+        } catch (e) {
+          // Cache write failed, ignore
+        }
+
         setCommits(sortedCommits)
         setLoading(false)
       } catch (err) {
@@ -65,11 +93,11 @@ function SidebarWidget({ projects, onProjectClick, playClick, playHover }) {
     fetchCommits()
   }, [])
 
-  // Update time every second
+  // Update time every minute (not every second)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date())
-    }, 1000)
+    }, 60000)
     return () => clearInterval(interval)
   }, [])
 
@@ -109,7 +137,7 @@ function SidebarWidget({ projects, onProjectClick, playClick, playHover }) {
   const isDay = hour >= 6 && hour < 20
 
   return (
-    <div className="border-2 border-neutral-800 bg-paper">
+    <div className="border border-neutral-200 bg-paper">
       {/* Section A: Article Index */}
       <div className="border-b border-neutral-300 px-3 py-2">
         <h3 className="text-[10px] sm:text-xs tracking-wider sm:tracking-widest font-bold text-center">
