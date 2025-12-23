@@ -97,7 +97,7 @@ Contact section styled as vintage classifieds:
 ## 👤 Author
 
 **Julio Calvo**
-- Frontend Developer & UI Designer
+- Frontend Engineer & UI Designer
 - Based in Toronto, Canada
 - Email: julio@veraos.ai
 - GitHub: [@juliocalvor811-svg](https://github.com/juliocalvor811-svg)

@@ -20,7 +20,7 @@ function NewspaperCTA({ onContactClick }) {
 
   // Check on mount if element is already in view (user scrolled directly there)
   useEffect(() => {
-    // Small delay to let the page settle after mount
+    // Longer delay to let lazy-loaded content settle
     const timer = setTimeout(() => {
       if (containerRef.current && !hasTriggered.current) {
         const rect = containerRef.current.getBoundingClientRect()
@@ -36,7 +36,7 @@ function NewspaperCTA({ onContactClick }) {
           hasTriggered.current = true
         }
       }
-    }, 100)
+    }, 500)
 
     return () => clearTimeout(timer)
   }, [])
@@ -69,9 +69,11 @@ function NewspaperCTA({ onContactClick }) {
     return () => observer.disconnect()
   }, [shouldAnimate])
 
-  // Smooth lerp animation loop for hover effect (like a drop of water)
+  const [isHoveringNewspaper, setIsHoveringNewspaper] = useState(false)
+
+  // Smooth lerp animation loop for hover effect (only when hovering)
   useEffect(() => {
-    if (!animationDone) return
+    if (!animationDone || !isHoveringNewspaper) return
 
     const lerp = (start, end, factor) => start + (end - start) * factor
 
@@ -98,7 +100,7 @@ function NewspaperCTA({ onContactClick }) {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [animationDone])
+  }, [animationDone, isHoveringNewspaper])
 
   // Mouse move handler - updates target, lerp handles smooth transition
   const handleMouseMove = (e) => {
@@ -122,9 +124,19 @@ function NewspaperCTA({ onContactClick }) {
     }
   }
 
+  const handleMouseEnter = () => {
+    setIsHoveringNewspaper(true)
+  }
+
   const handleMouseLeave = () => {
+    setIsHoveringNewspaper(false)
     // Return to resting position
     targetTransform.current = { x: 0, y: 0, rotate: 0 }
+    // Reset transform immediately
+    if (newspaperRef.current) {
+      newspaperRef.current.style.transform = 'rotate(-3deg)'
+    }
+    currentTransform.current = { x: 0, y: 0, rotate: 0 }
   }
 
   const today = new Date()
@@ -140,6 +152,7 @@ function NewspaperCTA({ onContactClick }) {
       ref={containerRef}
       className="py-16 sm:py-24 flex justify-center items-center overflow-hidden"
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Scale-up container (like original Springfield Shopper) */}
@@ -202,13 +215,13 @@ function NewspaperCTA({ onContactClick }) {
 
           {/* Main Headline */}
           <div className="text-center mb-4 sm:mb-6">
-            <p className="text-[10px] sm:text-xs tracking-widest text-neutral-500 mb-2">BREAKING</p>
+            <p className="text-[10px] sm:text-xs tracking-widest text-neutral-500 mb-2">LATEST</p>
             <h3
               className="text-xl sm:text-3xl md:text-4xl font-black leading-tight"
               style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             >
-              <span className="block">Frontend Developer</span>
-              <span className="block">Seeks New Opportunity</span>
+              <span className="block">Frontend Engineer</span>
+              <span className="block">Based in Toronto</span>
             </h3>
           </div>
 
@@ -220,8 +233,8 @@ function NewspaperCTA({ onContactClick }) {
                 Skills in High Demand
               </h4>
               <div className="text-[10px] sm:text-xs leading-relaxed text-neutral-600 space-y-1">
-                <p>React.js specialist with proven track record in building production-ready applications.</p>
-                <p>Tailwind CSS expert. Responsive design advocate. Performance-obsessed.</p>
+                <p>React.js, TypeScript, Tailwind CSS.</p>
+                <p>Responsive design. Production-ready code.</p>
               </div>
 
               {/* Mini Stats */}
@@ -243,7 +256,7 @@ function NewspaperCTA({ onContactClick }) {
                 Location: Toronto
               </h4>
               <div className="text-[10px] sm:text-xs leading-relaxed text-neutral-600">
-                <p>Humber Polytechnic graduate ready to contribute to meaningful products.</p>
+                <p>Humber Polytechnic graduate.</p>
               </div>
 
               {/* CTA Button */}
@@ -255,7 +268,7 @@ function NewspaperCTA({ onContactClick }) {
               </button>
 
               <p className="text-[8px] sm:text-[9px] text-neutral-400 text-center mt-2 italic">
-                "Available for immediate hire"
+                juliocalvo.dev
               </p>
             </div>
           </div>
@@ -263,7 +276,7 @@ function NewspaperCTA({ onContactClick }) {
           {/* Bottom Banner */}
           <div className="mt-4 sm:mt-6 pt-3 border-t-2 border-neutral-800 text-center">
             <p className="text-[9px] sm:text-[10px] tracking-widest text-neutral-500">
-              AVAILABLE FOR IMMEDIATE HIRE
+              OPEN TO OPPORTUNITIES
             </p>
           </div>
 

@@ -130,7 +130,7 @@ export default function HighlightShowcaseTabs() {
             width: '100%'
           }}
         >
-          <VideoPlayer src="/videos/highlights-final-video.mp4" />
+          <VideoPlayer src="/videos/veraOS-Project/highlights-final-video.mp4" />
         </div>
       </div>
     </div>

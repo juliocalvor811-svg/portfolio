@@ -3,18 +3,15 @@ const projects = [
     id: 1,
     // Card Preview Data
     title: 'veraOS: Building a Full-Stack Productivity Platform from Scratch',
-    subtitle: 'Drag-and-drop widgets, interactive highlights, real-time chat, and a library system — all integrated with AI',
+    subtitle: 'Drag-and-drop widgets, interactive highlights, real-time chat, and a library system - all integrated with AI',
     name: 'veraOS',
     category: 'FULLSTACK · AI INTEGRATION',
     type: 'Full-Stack Product',
     year: '2025',
-    content: `What started as a project to learn how to truly integrate AI into a product 
-      became a full productivity platform. Not just calling an API — building features 
-      where AI understands your notes, flashcards, and schedule to give contextual answers.`,
-    fullContent: `veraOS is an AI-powered productivity platform featuring a drag-and-drop widget 
-      dashboard, interactive chat with semantic highlighting, a library system with folders 
-      and search, and academic tools with spaced repetition. Built over 6 months as a way 
-      to learn modern frontend development and AI integration.`,
+    content: `Full-stack productivity platform with drag-and-drop widgets, AI chat with semantic highlighting, 
+      library system with folders, and academic tools. 6 months, 100K+ lines.`,
+    fullContent: `Full-stack productivity platform: drag-and-drop widget dashboard, AI chat with semantic highlighting, 
+      library system with folders and search, academic tools with spaced repetition. 6 months, 100K+ lines, solo developer.`,
     pullQuote: '"The best way to learn frontend is to build something too ambitious and figure it out."',
     tech: {
       languages: [
@@ -40,19 +37,22 @@ const projects = [
       npm: 'https://npmjs.com/package/react-ai-highlight-parser'
     },
 
+    // Card Preview Video
+    portraitVideo: '/videos/veraOS-Project/Drag-Drop-Widgets-Video.mp4',
+
     // Full Article Data
-    date: 'January 2025',
+    date: 'December 2025',
     readTime: '10',
-    image: '/images/veraOS-project/vera-interface.png',
-    imageCaption: 'The veraOS dashboard with customizable widgets and AI chat integration.',
+    video: '/videos/veraOS-Project/Vera_Full_Video.mp4',
+    videoCaption: 'The veraOS dashboard with customizable widgets and AI chat integration.',
     author: {
       name: 'Julio Calvo',
-      title: 'Frontend Developer'
+      title: 'Frontend Engineer'
     },
     duration: '6 months',
     role: 'Solo Developer & Designer',
 
-    lede: `veraOS started with a simple question: how do you actually build a product where AI isn't just a chatbot, but something deeply integrated into the experience? Not just "call the OpenAI API and display the response" — but AI that understands your data, responds in context, and enhances the interface itself. Six months later, the answer is a full productivity platform with drag-and-drop widgets, interactive highlights, a library system, and academic tools. This is what I learned building it.`,
+    lede: `Full-stack productivity platform with drag-and-drop widgets, AI chat with semantic highlighting, library system with folders, and academic tools. 6 months, 100K+ lines, solo developer.`,
 
     bodyParagraphs: [
       {
@@ -61,22 +61,24 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'Most AI chat interfaces just render text. veraOS does something different: as the AI responds, it applies semantic highlighting in real-time. Users can choose between color highlights, underlines, or both — with customizable palettes that update instantly. This wasn\'t a simple CSS trick. It required building a token-based parser that processes the AI\'s response stream, identifies highlight codes, handles nested formatting, protects code blocks from being highlighted, and cleans up malformed tags without breaking the content. The parser is available as an open source npm package: **react-ai-highlight-parser**.'
+        content: 'Real-time semantic highlighting that applies as text streams in - not after. The system parses incoming text, identifies semantic markers, handles nested formatting, and renders styled output without blocking the stream. 350 lines of tokenization logic, published as an npm package.'
+      },
+      {
+        type: 'text',
+        content: 'The technical challenge: text arrives in chunks, markers can span multiple chunks, and the UI needs to update every frame without flicker. Stack-based parsing with O(n) complexity, placeholder substitution for code blocks, cleanup for malformed markers.'
       },
       {
         type: 'list',
         items: [
-          'Token parser that handles nested highlight tags correctly',
-          'Real-time application during streaming responses',
-          'Multiple modes: highlights only, underlines only, or both combined',
-          'Customizable color palettes that apply instantly',
-          'Code block protection — syntax highlighting isn\'t affected',
-          'Graceful handling of malformed or orphaned tags'
+          'Stack-based tokenizer - O(n) parsing, handles incomplete/nested markers mid-stream',
+          '60 visual combinations (2 palettes × 10 semantic colors × 3 modes)',
+          'Zero-flicker rendering during streaming via incremental DOM updates',
+          'npm package: react-ai-highlight-parser'
         ]
       },
       {
         type: 'highlight-showcase',
-        caption: 'Live demonstration: The highlight system cycles through modes (highlights, underline, both) and palettes (vibrant, natural) — exactly as implemented in veraOS.'
+        caption: 'Live demonstration: The highlight system cycles through modes (highlights, underline, both) and palettes (vibrant, natural) - exactly as implemented in veraOS.'
       },
       {
         type: 'pullquote',
@@ -89,11 +91,20 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'The main interface is a customizable dashboard inspired by Notion and Linear. Users can add widgets — pomodoro timer, flashcards, study goals, focus zone, schedule — and arrange them freely. Dragging a widget shows visual feedback, other widgets shift to make room, and layouts persist across sessions. Each widget is completely independent with its own state, but they can communicate through a shared context when needed.'
+        content: 'Customizable dashboard with 10+ widget types (pomodoro, flashcards, schedule, goals, focus timer). Drag to reorder, resize to fit, layouts persist to Supabase per user.'
       },
       {
         type: 'text',
-        content: 'The technical challenge was making this feel smooth. Collision detection runs on every drag frame — I used spatial hashing to keep it O(n) instead of O(n²). Widgets respond to resize events through ResizeObserver, adapting their internal layouts. The whole system lazy-loads: widgets only mount when added, reducing the initial bundle by over 400KB.'
+        content: 'The drag system runs collision detection on every frame. Used spatial indexing to keep it O(n) instead of O(n²). Widgets lazy-load on mount - 400KB off the initial bundle. ResizeObserver handles responsive layouts inside each widget.'
+      },
+      {
+        type: 'list',
+        items: [
+          '10+ widget types, each with independent state and ResizeObserver layouts',
+          'O(n) collision detection via spatial indexing (not O(n²) pairwise checks)',
+          'Lazy loading - widgets mount on add, 400KB bundle reduction',
+          'Layouts persist per user to Supabase'
+        ]
       },
       {
         type: 'video',
@@ -106,17 +117,19 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'Every chat is saved to a library that works like a file manager. Users can create folders (and subfolders), drag chats between them, pin favorites, search across all conversations, and archive old ones. This sounds simple until you implement it: optimistic updates that revert on failure, real-time sync with Supabase, undo/redo history that persists to the database, and a UI that feels instant even when network requests are in flight.'
+        content: 'Chat library with nested folders and subfolders, drag-and-drop organization, and full-text search. Optimistic updates with automatic rollback - the UI responds instantly, syncs to Supabase in background, reverts if the request fails.'
+      },
+      {
+        type: 'text',
+        content: 'Action history persists to database (last 100 actions per user). Pin, favorite, archive. Tier-based storage limits.'
       },
       {
         type: 'list',
         items: [
-          'Nested folder structure with drag-and-drop organization',
-          'Optimistic UI updates with automatic rollback on failure',
-          'Undo/redo history persisted to Supabase — survives page refresh',
-          'Full-text search across all chats and folders',
-          'Pin, favorite, and archive functionality',
-          'Tier-based limits with clear upgrade prompts'
+          'Nested folders and subfolders with drag-and-drop (chats and folders)',
+          'Optimistic updates with rollback on failure',
+          'Action history in Supabase - survives refresh, max 100 per user',
+          'Full-text search across all conversations'
         ]
       },
       {
@@ -130,16 +143,20 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'This is where the AI integration gets interesting. In Academic Mode, the AI doesn\'t just answer questions — it has context from your widgets. Ask "what should I study today?" and it checks your flashcards due for review, your upcoming exams in the schedule widget, and your study goals. The response isn\'t generic advice; it\'s specific to your data.'
+        content: 'Academic Mode injects widget data into AI context. Ask "what should I study?" and the system pulls your flashcards due for review, upcoming exams, study goals, schedule - 10 widget types have context extractors that format their data for the prompt.'
       },
       {
         type: 'text',
-        content: 'Under the hood, this uses embeddings. When you ask a question, the system generates a vector representation and compares it against pre-computed embeddings for each widget type. Only relevant widgets get queried for their data, keeping the context focused and the token count reasonable. The embedding model runs on a Render server — moving this computation off the client was necessary for performance.'
+        content: 'Embeddings run on a Render server (MiniLM-L12-v2, 384 dimensions). Originally tried transformers.js in browser - 25MB download per user. Moved to server: 0 bytes client-side, ~50ms per embedding.'
       },
       {
-        type: 'pullquote',
-        content: 'Academic Mode isn\'t "AI plus widgets." It\'s AI that understands widgets. That difference took months to get right.',
-        attribution: 'Architecture Decision'
+        type: 'list',
+        items: [
+          '10 widget types with context extractors (flashcards, schedule, goals, pomodoro, etc.)',
+          'Embedding server on Render - MiniLM-L12-v2, 384 dimensions',
+          'Replaced 25MB client download with server-side computation (~50ms/query)',
+          'Context builder formats widget data into structured prompts'
+        ]
       },
       {
         type: 'academic-flow',
@@ -151,7 +168,11 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'veraOS offers tiered subscription plans integrated with Stripe: Free, Pro, Student, and Annual. The upgrade flow includes animated pricing cards and seamless checkout. The entire app supports English, Spanish, French, and German through i18next, with all UI elements adapting when you switch languages.'
+        content: '4 subscription tiers (Free, Pro, Student, Annual) via Stripe. Checkout through Edge Function that creates portal sessions - users manage billing, cancel, update payment method directly in Stripe\'s hosted portal.'
+      },
+      {
+        type: 'text',
+        content: 'i18next with 4 languages (EN, ES, FR, DE) and 18 namespaces - one per feature/widget. Lazy-loads translations on demand.'
       },
       {
         type: 'video',
@@ -164,11 +185,20 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'The flashcard widget implements spaced repetition using the SM-2 algorithm. But beyond the algorithm, the UX required careful thought: study sessions that can be paused and resumed (with time tracking), flip animations that feel tactile, progress indicators that motivate without overwhelming, and an expanded view for serious study sessions with full keyboard navigation.'
+        content: 'Spaced repetition using FSRS-4.5. 4 learning steps (1min, 10min, 1hr, 6hrs), 8 card types with difficulty modifiers, leech detection after 8 lapses. Response time affects next interval calculation.'
       },
       {
         type: 'text',
-        content: 'Study session state persists to localStorage, so closing the browser mid-session doesn\'t lose progress. Color palettes can be migrated between themes automatically — if you switch from "vibrant" to "natural" colors, your deck colors translate to the new palette rather than looking wrong.'
+        content: 'Study sessions persist to localStorage - pause, close browser, resume later. Full keyboard navigation in expanded view.'
+      },
+      {
+        type: 'list',
+        items: [
+          'FSRS-4.5 algorithm with 4 learning steps and 6 card states',
+          '8 card types (basic, multiple choice, fill-in, math, etc.) with difficulty modifiers',
+          'Leech detection after 8 lapses - flags cards that need attention',
+          'Session state persists to localStorage'
+        ]
       },
       {
         type: 'video',
@@ -182,51 +212,30 @@ const projects = [
       },
       {
         type: 'text',
-        content: 'The app uses five React Contexts with clear separation: WidgetsContext for layout positions, WidgetDataContext for widget state, ThemeContext for appearance, SubscriptionContext for tier limits, and ExpandedWidgetContext for modal state. This isn\'t over-engineering — it\'s what happens when you actually need to share state across a complex app without prop drilling into madness.'
+        content: '5 React Contexts: WidgetsContext (layout), WidgetDataContext (state), ThemeContext (appearance), SubscriptionContext (tier limits), ExpandedWidgetContext (modals).'
       },
       {
         type: 'text',
-        content: 'The animated circle in the center of the dashboard uses Three.js with Simplex Noise for organic movement. It responds to user interactions and system state — pulsing faster during AI responses, changing color based on the active theme. This detail cost days to get right, but it\'s what makes the interface feel alive rather than static.'
+        content: 'Animated center circle with Three.js + Simplex Noise - responds to AI state and theme changes.'
       },
       {
         type: 'text',
-        content: 'For AI-powered features, I built a separate embeddings server on Render running the paraphrase-multilingual-MiniLM-L12-v2 model. Originally I tried running transformers.js in the browser, but 25MB of downloads for each user was unacceptable. Moving this to a dedicated server reduced client-side overhead to zero while keeping embedding generation fast (~50ms per query).'
+        content: '20+ Supabase Edge Functions as API proxies. AES-256-GCM client-side encryption. DOMPurify for XSS.'
       },
       {
         type: 'list',
         items: [
-          'Multi-provider AI routing across OpenAI, Claude, Gemini, Groq, Mistral, and Scaleway — with automatic fallbacks and region-aware routing for EU compliance',
-          'Supabase for auth, PostgreSQL database, real-time subscriptions, and file storage',
-          'Stripe integration for subscriptions with webhook handling and tier-based feature gating',
-          'Custom embeddings server on Render (MiniLM-L12-v2, 384 dimensions)',
-          'Three.js + Simplex Noise for the animated central circle',
-          'AES-256-GCM encryption for sensitive message data (client-side)',
-          'i18next for internationalization (English, Spanish, French, German)',
-          'DOMPurify for XSS protection on all user-generated content',
-          'Lazy loading for all widgets and modals (400KB bundle reduction)',
-          '20+ Supabase Edge Functions as secure API proxies'
+          '6 LLM providers (OpenAI, Claude, Gemini, Groq, Mistral, Scaleway) with automatic fallbacks',
+          '20+ Supabase Edge Functions as secure API proxies',
+          'AES-256-GCM encryption for sensitive data (client-side)',
+          'Three.js + Simplex Noise for animated UI elements',
+          'DOMPurify for XSS protection on user content',
+          'Region-aware routing for EU compliance'
         ]
       },
       {
         type: 'tech-stack',
         caption: 'Interactive architecture diagram: Hover over nodes to see details, watch data flow between services.'
-      },
-      {
-        type: 'subheading',
-        content: 'What This Project Taught Me'
-      },
-      {
-        type: 'text',
-        content: 'Building veraOS taught me that production code is fundamentally different from tutorial code. Tutorials show you how to make something work. Production requires thinking about what happens when it doesn\'t work — network failures, malformed data, user mistakes, edge cases. Every feature in veraOS has error handling, loading states, and fallback behavior. That\'s not paranoia; it\'s professionalism.'
-      },
-      {
-        type: 'text',
-        content: 'More importantly, I learned how to work effectively with AI tools. Not as a crutch, but as a collaborator. I can look at any part of this codebase and explain why it works, modify it confidently, and debug it when it breaks. The AI accelerated my learning; it didn\'t replace it.'
-      },
-      {
-        type: 'pullquote',
-        content: 'Using AI to build made me better at building. That\'s the skill that matters now.',
-        attribution: 'Final Reflection'
       }
     ],
 
@@ -257,7 +266,7 @@ const projects = [
       }
     ],
 
-    conclusion: 'veraOS isn\'t just a portfolio project — it\'s proof that modern development looks different than it did five years ago. AI tools are part of the workflow now. The question isn\'t whether to use them, but how to use them well. Twelve months of building this platform taught me React deeply, exposed me to real architectural decisions, and showed me what it takes to ship something that works reliably. That\'s the experience I\'m bringing to my next role.'
+    conclusion: 'veraOS is proof that modern development looks different than it did five years ago. AI tools are part of the workflow now. The question isn\'t whether to use them, but how to use them well. Six months of building this platform taught me React deeply, exposed me to real architectural decisions, and showed me what it takes to ship something that works reliably.'
   },
   {
     id: 2,
@@ -295,6 +304,9 @@ const projects = [
       github: 'https://github.com/juliocalvorios/ontario-flag-time-machine'
     },
 
+    // Card Preview Video
+    portraitVideo: '/videos/Ontario-Machine-Flag-project/Ontario-Flag.mp4',
+
     // Full Article Data
     date: 'December 2025',
     readTime: '4',
@@ -302,7 +314,7 @@ const projects = [
     videoCaption: 'The Ontario Flag Time Machine: 260 years of history, 73 tests.',
     author: {
       name: 'Julio Calvo',
-      title: 'Frontend Developer'
+      title: 'Frontend Engineer'
     },
     duration: '2 weeks',
     role: 'Solo Developer & Designer',
@@ -448,8 +460,8 @@ const projects = [
       github: 'https://github.com/juliocalvorios/through-the-glass'
     },
 
-    // Card Preview Image
-    portraitImage: '/images/Through-The-Glass-Project/Portrait-Image.png',
+    // Card Preview Video
+    portraitVideo: '/videos/Through-The-Glass-Project/Through-The-Glass-Video-1.mp4',
 
     // Full Article Data
     date: 'December 2025',
@@ -458,7 +470,7 @@ const projects = [
     videoCaption: 'The Nordic cabin window with snow falling outside and warm interior lighting.',
     author: {
       name: 'Julio Calvo',
-      title: 'Frontend Developer'
+      title: 'Frontend Engineer'
     },
     duration: '3 weeks',
     role: 'Solo Developer & Designer',
@@ -577,7 +589,7 @@ const projects = [
     videoCaption: 'The Impossible Form: a Windows 95 window that actively resists being filled out.',
     author: {
       name: 'Julio Calvo',
-      title: 'Frontend Developer'
+      title: 'Frontend Engineer'
     },
     duration: '2 weeks',
     role: 'Solo Developer & Designer',

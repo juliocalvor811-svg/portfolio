@@ -29,7 +29,7 @@ function About() {
           <div className="text-center">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold font-serif">The Developer</h2>
             <p className="text-neutral-500 font-serif mt-1 text-xs sm:text-sm md:text-base tracking-wide">
-              Frontend Developer · Toronto
+              Frontend Engineer · Toronto
             </p>
           </div>
         </div>
@@ -69,7 +69,7 @@ function About() {
               </svg>
             </a>
             <a 
-              href="https://github.com/juliocalvor811-svg"
+              href="https://github.com/juliocalvorios"
               target="_blank"
               rel="noopener noreferrer"
               className="text-neutral-400 hover:text-neutral-700 transition-colors"
@@ -103,7 +103,7 @@ function About() {
               'm Julio. I'm from Zaragoza, Spain, and I've been living in Toronto for the past couple of years. Before getting into development, I studied Commerce and Marketing back in Spain. Then I moved here and did Multimedia Design at Humber Polytechnic.
             </p>
             <p>
-              Most of what I know comes from building veraOS.
+              I learned React deeply by building veraOS.
             </p>
           </div>
 

@@ -11,13 +11,15 @@ import PrintEdition from './components/PrintEdition'
 /**
  * Fixed Reading Progress Bar
  * Always visible at the very top of the page
- * Uses requestAnimationFrame for buttery smooth animation
+ * Only animates when scrolling (stops after idle)
  */
 function ReadingProgressBar() {
   const [progress, setProgress] = useState(0)
   const targetProgress = useRef(0)
   const currentProgress = useRef(0)
   const rafId = useRef(null)
+  const isAnimating = useRef(false)
+  const idleTimeout = useRef(null)
 
   useEffect(() => {
     const lerp = (start, end, factor) => start + (end - start) * factor
@@ -31,7 +33,20 @@ function ReadingProgressBar() {
         setProgress(currentProgress.current)
       }
 
+      // Stop animating if we're close enough to target
+      if (Math.abs(currentProgress.current - targetProgress.current) < 0.5) {
+        isAnimating.current = false
+        return
+      }
+
       rafId.current = requestAnimationFrame(animate)
+    }
+
+    const startAnimation = () => {
+      if (!isAnimating.current) {
+        isAnimating.current = true
+        rafId.current = requestAnimationFrame(animate)
+      }
     }
 
     const handleScroll = () => {
@@ -40,15 +55,21 @@ function ReadingProgressBar() {
       const scrolled = window.scrollY
       const percentage = documentHeight > 0 ? (scrolled / documentHeight) * 100 : 0
       targetProgress.current = Math.min(percentage, 100)
+      
+      // Start animation on scroll
+      startAnimation()
+      
+      // Clear any existing idle timeout
+      if (idleTimeout.current) clearTimeout(idleTimeout.current)
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
-    rafId.current = requestAnimationFrame(animate)
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
       if (rafId.current) cancelAnimationFrame(rafId.current)
+      if (idleTimeout.current) clearTimeout(idleTimeout.current)
     }
   }, [progress])
 
@@ -259,7 +280,7 @@ function Footer({ onSectionChange, onPrintEdition }) {
               {/* Marca */}
               <div>
                 <p className="text-sm tracking-[0.15em] font-bold">JULIO CALVO</p>
-                <p className="text-[9px] tracking-widest text-neutral-500">FRONTEND DEVELOPER</p>
+                <p className="text-[9px] tracking-widest text-neutral-500">FRONTEND ENGINEER</p>
               </div>
 
               {/* Navegación */}

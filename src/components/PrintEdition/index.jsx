@@ -168,7 +168,7 @@ export default function PrintEdition({ isOpen, onClose }) {
 
             {/* Main headline */}
             <div className="paper-headline">
-              <h2>Frontend Developer Seeks New Challenge in Toronto's Tech Scene</h2>
+              <h2>Frontend Engineer Seeks New Challenge in Toronto's Tech Scene</h2>
               <p className="paper-lead">
                 Spanish-born creative combines design sensibility with technical skill,
                 bringing pixel-perfect interfaces and user-focused solutions to the table.
@@ -202,7 +202,7 @@ export default function PrintEdition({ isOpen, onClose }) {
             {/* Quote */}
             <div className="paper-quote">
               <p>"I believe in building, not waiting. Every project is a chance to create something meaningful."</p>
-              <cite>Julio Calvo, Frontend Developer</cite>
+              <cite>Julio Calvo, Frontend Engineer</cite>
             </div>
 
             {/* Footer */}
